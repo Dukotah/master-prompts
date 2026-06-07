@@ -8,6 +8,13 @@ across all projects while the owner is away. Update the per-project STATE lines 
 > Last reconciled: 2026-06-07. Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
+**Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
+("Overseer — daily project coordinator"), 06:00 PDT / 13:00 UTC daily, Sonnet, clones all 5 active
+repos + master-prompts. It reconciles state, advances ONE project per run (rotating, UTC day-of-year
+mod 5), pushes work to `overseer/<UTC-date>` branches (NEVER main), and pushes its updated brief +
+`runs/overseer-<date>.md` report to this repo's main. Manage at
+https://claude.ai/code/routines/trig_014XPBhL62SX3vh5qei8oNPe (the overseer agent: this is YOU).
+
 ---
 
 ## 0. Operating guardrails (READ FIRST — these override "just ship it")
