@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (22:00 UTC). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-07 (23:00 UTC). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,13 +59,13 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-07 23:00 UTC) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at baf075a (synced); **overseer/2026-06-07** (+2 commits: analytics + DailyChallenge P1.6b tests, 400 tests — 4 behind main, awaiting owner merge); `qa-fixes-2026-06-07` merged to main |
-| **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at 7985e2e (synced with origin) |
-| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at 15381fd (synced with origin) |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at 33b6564 (+1 vs prev: collapsible track accordion); **overseer/2026-06-07** (+2 commits: analytics + DailyChallenge P1.6b tests) awaiting owner merge; `feat/track-boss-fights` new |
+| **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at 7985e2e (synced); new prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
+| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at faf4835 (new: Resend email ingestion + CI/Playwright merged); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at 6ac5ed2; `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 7d522e9; **overseer/2026-06-08** d6013a0 (+1: F2.3 daily heartbeat, 2517 tests) awaiting owner review; `feat/research-buildout` **22 ahead / 15 behind**; `feat/risk-hardening` + `feat/status-export` each **1 ahead / 40 behind** (likely obsolete) |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 7d522e9; **overseer/2026-06-08** d6013a0 (+1: F2.3 daily heartbeat, 2517 tests) + **overseer/2026-06-07** fa1742b (+1: coverage uplift — 22 tests, backtester/base_strategy/config to 96-100%) both awaiting owner review; `feat/research-buildout` **22 ahead / 15 behind** (diverged); `feat/risk-hardening` + `feat/status-export` each **1 ahead / 40 behind** (likely obsolete) |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -130,9 +130,9 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Stack:** Next.js 16 + Tailwind v4. Sonoma County web/IT/cyber/AI for small businesses.
   `@/config/site` + `@/config/pricing` are single sources of truth. Has a full CRM (`/crm`,
   Upstash Redis, db.ts), 30+ blog posts, large service×city page matrix, 4 free-tool lead magnets.
-- **State:** `main` synced & deployed (origin/main `f161e0e`-era). Service×city matrix ~complete
-  for all meaningful Sonoma County towns. Lead capture wired: contact form + all 4 tools →
-  `intake.ts` → Upstash CRM, with lead-source attribution.
+- **State:** `main` at faf4835 — Resend email-event ingestion + drip-sequence cron + CI pipeline
+  + Playwright E2E smoke suite now merged to origin/main. Service×city matrix complete. Lead
+  capture fully wired. New in-flight branches: `feat/hardening-sprint1`, `feat/website-links-to-crm`.
 - **Gotchas:** ⚠️ historically the local checkout is a stale branch — **always fetch origin/main
   first**. One CRM only now (the old power-dialer was deleted/reconciled). Lint flags `Date.now()`
   in component scope — use a module-level helper.
@@ -142,8 +142,9 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   `OUTREACH_DOMAIN_VERIFIED_DATE`, flip on Web Analytics); verify Resend sending domain before any
   cold email.
 - **Verify:** `tsc` + `eslint` + `vitest` (~132 tests) + `next build`.
-- **Recently built:** SSRF guard on all scan endpoints + Business Analysis freemium tool (emailed
-  report + CRM lead capture) — merged to origin/main as of 15381fd. Blog TOC is also done.
+- **Recently built (on main):** Resend email ingestion + drip cron (merged PR #32) + CI/Playwright
+  E2E smoke suite (merged PR #31). Branches `feat/hardening-sprint1` + `feat/website-links-to-crm`
+  need review.
 - **Next buildable (no owner dep):** ROADMAP "Next 100" leftovers — inline estimate widget,
   comparison posts, dialer shortcuts, Cmd-K, image-loading audit.
 
@@ -174,18 +175,20 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
   Strategies emit `SignalEvent` only; `RiskManager` is the sole `OrderEvent` producer. Its own
   `CLAUDE.md/DECISIONS.md/ROADMAP.md/SESSION_PLAYBOOK.md` are the source of truth — **read first**.
-- **State:** build COMPLETE (Phases 1–6 + F1 + F2). 2517 tests, CI green on `main`. The
+- **State:** build COMPLETE (Phases 1–6 + F1 + F2). 2517 tests on main, CI green. The
   **multi-asset trend strategy is DEPLOYED LIVE ON PAPER** via GitHub Actions weekday cron.
-  **F2.3 DONE** (overseer/2026-06-08): daily heartbeat alert — `StateStore` meta table + 
-  `_heartbeat_if_due` dedup logic + `alerts_preview` mirrored. All F2 phases complete.
+  **F2.3 DONE** (overseer/2026-06-08): daily heartbeat alert. **Coverage uplift DONE**
+  (overseer/2026-06-07): 22 new tests — backtester 62%→100%, config 79%→100%,
+  base_strategy 78%→96% (line 133 is structurally dead code). All F2 phases complete.
   Remaining: F3.3 (live allocation engine) gated on W8 (needs PAID survivorship-free data).
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
   flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock W8/F3.3.
+  Merge `overseer/2026-06-07` (coverage) + `overseer/2026-06-08` (F2.3) when convenient.
 - **Next buildable:** F3.3 — live multi-strategy allocation engine (20% value / 80% trend) — BUILD
-  in backtest mode only, config-gated off until W8 clears. Or: coverage uplift on thinnest modules
-  (backtester 62%, base_strategy 78%, config 79%) — self-contained, no data deps.
+  in backtest mode only, config-gated off until W8 clears. Or: Gate-3 walk-forward "efficiency"
+  metric investigation (reports anomalous values, likely divide-by-near-zero).
 - **Sibling:** `apex-trader` (private Next.js control surface) is a separate repo.
 
 ### 🟡 Supporting
