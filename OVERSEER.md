@@ -110,8 +110,10 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   CSS — `SiteImage` owns fill/zoom. Build/preview from `sites/demo-gallery`. DON'T re-scrape
   curated grade-A demos to "enrich" — it regresses heroes (learned the hard way).
 - **Owner-action:** set `SITE_URL`/`GALLERY_BASE_URL` on Vercel; push/deploy decision.
+- **Recently built (local, UNPUSHED):** new `FaqAccordion.astro` FAQ section variant (commit
+  `c143d77`, build + audit clean; visual not yet eyeballed) — 2026-06-07, awaiting batch push.
 - **Next buildable:** run a fresh CSV batch through the upgraded pipeline (roster ~10); mine
-  CodeStitch for more section variants; before/after slider; OKLab hue math.
+  CodeStitch for MORE section variants; before/after slider; OKLab hue math.
 
 ### 🟢 Duke — Copper Bay Tech (own agency site, copperbaytech.com)
 - **Stack:** Next.js 16 + Tailwind v4. Sonoma County web/IT/cyber/AI for small businesses.
@@ -129,8 +131,10 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   `OUTREACH_DOMAIN_VERIFIED_DATE`, flip on Web Analytics); verify Resend sending domain before any
   cold email.
 - **Verify:** `tsc` + `eslint` + `vitest` (~132 tests) + `next build`.
-- **Next buildable (no owner dep):** ROADMAP "Next 100" leftovers — inline estimate widget, blog
-  TOC, comparison posts, dialer shortcuts, Cmd-K, image-loading audit.
+- **Recently built (local, UNPUSHED):** Blog TOC + reading time (`BlogTOC.tsx` + `blog/layout.tsx`,
+  commit `bcb33d6`, tsc/lint/132 tests/build all green) — 2026-06-07, awaiting batch push.
+- **Next buildable (no owner dep):** ROADMAP "Next 100" leftovers — inline estimate widget,
+  comparison posts, dialer shortcuts, Cmd-K, image-loading audit. (blog TOC = DONE, above)
 
 ### 🟢 Marina booking platform — multi-tenant SaaS (beat Singenuity)
 - **Stack:** Turborepo/pnpm + Next 14 (web+admin) + Node/Hono API + Postgres/Prisma + Square + Clerk.
