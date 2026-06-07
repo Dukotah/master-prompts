@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-07. Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08. Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -64,7 +64,7 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 | **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | branch `qa-fixes-2026-06-07`, **7 unpushed**, 15 dirty |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` **4 ahead / 1 behind**, clean — fetch+rebase before push |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` synced (pushed), 4 untracked docs |
-| **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | branch `phase-3-golive`, **24 unpushed** (stacked p1/p2/p3), clean |
+| **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | branch `phase-3-golive`, **24 unpushed** (stacked p1/p2/p3), clean · **overseer/2026-06-07** (+1 commit: promo admin page, awaiting owner merge) |
 | **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | branch `feat/research-buildout`, **4 unpushed**, 8 dirty |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` **24 BEHIND origin**, 3 dirty — local is stale |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` **2 unpushed**, clean |
@@ -150,14 +150,18 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **State:** Phases 0–3 done. Branch `phase-3-golive` (stacks phase-1 cockpit + phase-2 self-serve
   front door + phase-3 money-robustness) is **24 commits ahead, unpushed** (Vercel quota). DB is
   **live on Neon** (US-West). A stranger can self-provision a tenant. Isolation suite 8/8 live,
-  typecheck 9/9, builds green.
+  typecheck 9/9, builds green. **Branch `overseer/2026-06-07`** adds promo code admin page
+  (commit `658e478`, tsc clean, core 69/69 — safe to squash-merge onto main).
 - **Gotchas:** Neon `neondb_owner` has BYPASSRLS — tenant queries MUST use a NOBYPASSRLS `app_user`
-  role (`APP_DATABASE_URL`). Square must be v44+. Load env via `tsx --env-file=../../.env` (bash
-  `export` mangles Neon URLs). No pnpm/Docker on this box — `corepack enable`, hosted Neon.
-- **Owner-action:** Clerk SECRET key; Square sandbox keys; per-tenant billing; diagnose the
-  marina-admin Vercel deploy failure (builds locally, fails on Vercel — needs the build log);
-  legal/ToS; Neon restore drill.
-- **Next buildable:** Clerk-on signup path; Phase 4 polish; wizard→storefront click-through.
+  role (`APP_DATABASE_URL`). Payment processor is **Stripe** (D-013, switched off Square). Load env
+  via `tsx --env-file=../../.env` (bash `export` mangles Neon URLs). No pnpm/Docker on this box —
+  `corepack enable`, hosted Neon. `feat/finish-mvp-buildable` branch adds customer auth, 3DS/SCA,
+  and reschedule UI — overlaps with `phase-3-golive`; owner should reconcile before merging.
+- **Owner-action:** Clerk SECRET key (to flip REQUIRE_CLERK_AUTH=true); Stripe test keys; diagnose
+  marina-admin Vercel deploy failure; per-tenant billing; legal/ToS; Neon restore drill; merge
+  phase-3-golive + overseer/2026-06-07 (trivial sidebar conflict — combine Resources/Gift Cards/Promos).
+- **Next buildable:** wizard→storefront click-through (OnboardingWizard.tsx is in phase-3-golive
+  diff — do after that branch merges); web account slot-picker UI for 2.1 reschedule (also in that diff).
 
 ### 🟢 Apex Quant — algo-trading framework (Python)
 - **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
@@ -220,8 +224,9 @@ merge — agent-written content is often CI-untested.
 Keep this current — it's the owner's return-from-away checklist.
 
 - **Deploy / merge decisions:** ✅ duke + websites PUSHED to main 2026-06-07 (prod deployed, both
-  verified live 200). marina `phase-3-golive` (24 ahead) now backed up on `origin` (preview only) —
-  awaiting your merge-to-main decision + still needs the Vercel admin-deploy fix. apex
+  verified live 200). marina `phase-3-golive` (24 ahead) + `overseer/2026-06-07` (1 commit, promo
+  admin UI) both backed up on `origin` (preview only) — awaiting your merge-to-main decision +
+  still needs the Vercel admin-deploy fix (trivial sidebar merge conflict when combining). apex
   `feat/research-buildout` (14 ahead) backed up on origin, intentionally NOT merged (research is
   survivorship-biased, not deployable). boots advances on main via concurrent sessions.
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
@@ -230,8 +235,9 @@ Keep this current — it's the owner's return-from-away checklist.
   founder headshot + LinkedIn; Vercel env (CRM_ADMIN_TOKEN, GALLERY_BASE_URL,
   GITHUB_WEBHOOK_SECRET, OUTREACH_DOMAIN_VERIFIED_DATE, Web Analytics); verify Resend domain.
 - **Websites:** set SITE_URL / GALLERY_BASE_URL on Vercel; decide on deploy; run a fresh CSV batch.
-- **Marina:** Clerk SECRET key; Square sandbox keys; diagnose marina-admin Vercel deploy failure;
-  per-tenant billing; legal/ToS.
+- **Marina:** Clerk SECRET key; Stripe test keys (switched from Square — D-013); diagnose marina-admin
+  Vercel deploy failure; per-tenant billing; legal/ToS. Merge `phase-3-golive` + `overseer/2026-06-07`
+  onto main (trivial sidebar conflict: combine Resources/Gift Cards/Promos nav items).
 - **Apex Quant:** let the 30-day paper gate run; flip to live only after Sharpe holds; decide
   whether to fund a survivorship-free dataset for the value edge.
 - **Sonoma scraper:** local main is 24 behind origin — pull/sync.
