@@ -15,6 +15,12 @@ mod 5), pushes work to `overseer/<UTC-date>` branches (NEVER main), and pushes i
 `runs/overseer-<date>.md` report to this repo's main. Manage at
 https://claude.ai/code/routines/trig_014XPBhL62SX3vh5qei8oNPe (the overseer agent: this is YOU).
 
+**Dashboards:** (1) **Hosted, live, phone-friendly** — https://dukotah.github.io/overseer-dashboard/
+(repo `Dukotah/overseer-dashboard`, static `index.html` reading the GitHub API client-side, free on
+GitHub Pages, auto-refresh 5min; shows GitHub-side truth + this owner-action list + latest run report).
+(2) **Local** — `~/overseer-status.mjs` / `overseer.bat` (double-click) shows live LOCAL git state incl.
+uncommitted/unpushed work the hosted one can't see. Use both: hosted = from anywhere; local = this machine.
+
 ---
 
 ## 0. Operating guardrails (READ FIRST — these override "just ship it")
