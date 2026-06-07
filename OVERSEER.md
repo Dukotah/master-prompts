@@ -66,6 +66,7 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at faf4835 (new: Resend email ingestion + CI/Playwright merged); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at 6ac5ed2; `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
 | **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 7d522e9; **overseer/2026-06-08** d6013a0 (+1: F2.3 daily heartbeat, 2517 tests) + **overseer/2026-06-07** fa1742b (+1: coverage uplift — 22 tests, backtester/base_strategy/config to 96-100%) both awaiting owner review; `feat/research-buildout` **22 ahead / 15 behind** (diverged); `feat/risk-hardening` + `feat/status-export` each **1 ahead / 40 behind** (likely obsolete) |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | live `dukotah.github.io/shipsafe/`; iterating ROADMAP.md Phase 1 (de-slop) |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -190,6 +191,24 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   in backtest mode only, config-gated off until W8 clears. Or: Gate-3 walk-forward "efficiency"
   metric investigation (reports anomalous values, likely divide-by-near-zero).
 - **Sibling:** `apex-trader` (private Next.js control surface) is a separate repo.
+
+### 🟢 ShipSafe — Copper Bay Labs product #1 (from the forge factory)
+- **What:** standalone static web app (vanilla HTML/CSS/JS, GitHub Pages, $0). Paste a URL → ~20
+  ADA/WCAG + privacy + schema checks → plain-English "demand-letter risk" report. Live at
+  `dukotah.github.io/shipsafe/`. Deliberately kept STANDALONE (not folded into copperbaytech.com) so
+  it grows its own brand/audience + a self-serve Pro tier; the agency benefits later via a one-way
+  lead bridge.
+- **The mandate:** make it NOT look AI-built — credibility is the product. Its own roadmap
+  (`~/shipsafe/ROADMAP.md`) is the source of truth: Phase 1 = de-slop (brand identity, custom SVG
+  icons not emoji, report redesign, human copy, the tool passing its OWN a11y checks at AAA, trust
+  pages, real domain). Phases 2–4 = depth / monetize / distribute. Work phases top-down; do NOT
+  launch (P4) before Phase 1 clears.
+- **Verify method:** SCREENSHOT every UI change in headless Chrome (never trust build-success — same
+  anti-slop rule as websites), AND the tool must keep passing its own accessibility engine.
+- **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
+  branches as usual; merging to main to deploy is low-risk, owner's call.
+- **Next buildable:** ROADMAP Phase 1 items, top-down (P1.1 brand identity → P1.2 icons → P1.3 report
+  redesign → P1.5 self-exemplary a11y → P1.6 copy → P1.7 trust pages → P1.8 polish).
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
