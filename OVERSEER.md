@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08. Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-07 (20:08 UTC). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -61,11 +61,11 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 | Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-07) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | branch `qa-fixes-2026-06-07`, **7 unpushed**, 15 dirty |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` synced at 76a501f (pair streaks + guild boss); `qa-fixes-2026-06-07` merged; **overseer/2026-06-07** (+1 commit: analytics instrumentation, awaiting owner merge) |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` **4 ahead / 1 behind**, clean — fetch+rebase before push |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` synced (pushed), 4 untracked docs |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | branch `phase-3-golive`, **24 unpushed** (stacked p1/p2/p3), clean · **overseer/2026-06-07** (+1 commit: promo admin page, awaiting owner merge) |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | branch `feat/research-buildout`, **4 unpushed**, 8 dirty |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` synced; `feat/research-buildout` **20 ahead** of main; `feat/risk-hardening` + `feat/status-export` each **25 ahead** — owner should review/merge or close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` **24 BEHIND origin**, 3 dirty — local is stale |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` **2 unpushed**, clean |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -89,19 +89,23 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Where things live:** engine `src/store/useGameStore.ts`; curriculum data `src/lib/curriculum/`
   (register every new module in FOUR places: `index.ts`, `scripts/check-curriculum.ts` hand-list,
   `tracks.ts`, `paths.ts`); operating spine at root `VISION/ROADMAP/TASKS/PROGRESS/DECISIONS.md`.
-- **State:** huge surface already shipped & live (PR #17 merged → prod). Current branch
-  `qa-fixes-2026-06-07` (NOT merged) carries the flagship **"Work with AI / vibe-coding" learning
-  path** (the strategic wedge), QA fixes, and Tier-1 conversion levers (14-day reverse trial,
-  annual+money-back pricing, goal-gradient nudge). 99+ modules / ~699 lessons / 312 unit tests.
+- **State:** huge surface shipped & live. `qa-fixes-2026-06-07` merged → main. Main at
+  76a501f includes pair streaks (#8), guild co-op boss (#20), league segmentation (#16),
+  interleaved practice (#10), double-XP weekend (#15), streak-decay soft-reset (DONE),
+  FSRS spaced-rep (already in store). 139 modules / 979 lessons / 377 unit tests / 1747
+  curriculum tests. **overseer/2026-06-07** adds lesson_started + streak_milestone analytics
+  (awaiting owner merge). Many cloud branches in-flight: feat/courses-and-lesson-ux,
+  feat/gamification-expansion, feat/systems-tracks — avoid colliding files.
 - **Gotchas:** `check-curriculum.ts` runs starter stubs AND solutions with NO timeout — an
   unbounded loop in a stub or a drain-loop test HANGS forever. JS runner = Web Worker (no
   window/localStorage). Cloud agents push to `origin/main` AND open PRs — fetch+rebase before push.
 - **Owner-action blockers (can't be done without secrets):** apply Supabase migrations 0005/0006/0007
   live; set Vercel env (SERVICE_ROLE, STRIPE_*, RESEND, VAPID, CRON_SECRET, GITHUB_APP_*, SENTRY_DSN).
 - **Verify:** `npx tsc --noEmit` · `npm run check` · `npm test` · `npm run build`.
-- **Next buildable:** instrument week-1 activation funnel; trial-expiration urgency emails;
-  Leitner→FSRS spaced-rep; bilateral pair streaks; streak-decay-not-reset. Backlog in
-  `docs/STRATEGY-RESEARCH-2026-06.md`.
+- **Next buildable:** goal-gradient nudge at 85% to level-up (E:L — pure UI in XPBar/dashboard,
+  no secrets); variable-reward boss loot chest (E:M); comparison/alternative-to SEO pages (E:L
+  content); XP double-weekend events (already shipped per main). trial-expiration urgency emails
+  (blocked: needs RESEND secret). Backlog in `docs/STRATEGY-RESEARCH-2026-06.md`.
 
 ### 🟢 Websites — outreach demo-site factory (Astro)
 - **What:** mass-generates per-business demo sites at `/p/<slug>` (one Vercel deploy hosts all
@@ -224,11 +228,12 @@ merge — agent-written content is often CI-untested.
 Keep this current — it's the owner's return-from-away checklist.
 
 - **Deploy / merge decisions:** ✅ duke + websites PUSHED to main 2026-06-07 (prod deployed, both
-  verified live 200). marina `phase-3-golive` (24 ahead) + `overseer/2026-06-07` (1 commit, promo
-  admin UI) both backed up on `origin` (preview only) — awaiting your merge-to-main decision +
-  still needs the Vercel admin-deploy fix (trivial sidebar merge conflict when combining). apex
-  `feat/research-buildout` (14 ahead) backed up on origin, intentionally NOT merged (research is
-  survivorship-biased, not deployable). boots advances on main via concurrent sessions.
+  verified live 200). marina `phase-3-golive` (+10 vs main) + `overseer/2026-06-07` (1 commit,
+  promo admin UI) both on `origin` (preview only) — awaiting your merge-to-main decision + Vercel
+  admin-deploy fix. **boots `overseer/2026-06-07`** (+1 commit: lesson_started + streak_milestone
+  analytics) — safe to merge any time. apex `feat/research-buildout` (20 ahead), `feat/risk-hardening`
+  (25 ahead), `feat/status-export` (25 ahead) on origin — review and merge or close; risk-hardening
+  and status-export have significant work that may be worth landing.
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
   STRIPE_*, RESEND, VAPID, CRON_SECRET, GITHUB_APP_*, SENTRY_DSN).
 - **Duke (growth levers):** GBP as service-area business; real reviews + GOOGLE_REVIEW_URL;
