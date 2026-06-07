@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-07 (21:10 UTC). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (22:00 UTC). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,15 +59,15 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-07) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` synced at 76a501f; **overseer/2026-06-07** (+2 commits: analytics instrumentation + DailyChallenge P1.6b tests, 400 tests total, awaiting owner merge) |
-| **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at 7985e2e (roadmap batch: tokens/grain/font preload/schema/CRO); synced with origin |
-| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at 15381fd (SSRF guard + Business Analysis freemium tool merged) |
-| **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at 6ac5ed2 (customer self-service reschedule); `phase-3-golive` **24 ahead**; **overseer/2026-06-07** (+1 commit: promo admin page, awaiting owner merge) |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 7d522e9 (feat/wire-ts-momentum merged); `feat/research-buildout` **20 ahead** of main (diverged); `feat/risk-hardening` + `feat/status-export` each **1 ahead / 40 behind** — owner should review/merge or close |
-| **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` **24 BEHIND origin**, 3 dirty — local is stale |
-| **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` **2 unpushed**, clean |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at baf075a (synced); **overseer/2026-06-07** (+2 commits: analytics + DailyChallenge P1.6b tests, 400 tests — 4 behind main, awaiting owner merge); `qa-fixes-2026-06-07` merged to main |
+| **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at 7985e2e (synced with origin) |
+| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at 15381fd (synced with origin) |
+| **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at 6ac5ed2; `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 7d522e9; **overseer/2026-06-08** d6013a0 (+1: F2.3 daily heartbeat, 2517 tests) awaiting owner review; `feat/research-buildout` **22 ahead / 15 behind**; `feat/risk-hardening` + `feat/status-export` each **1 ahead / 40 behind** (likely obsolete) |
+| **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
+| **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
 | **Tour booking research** | `Dukotah/tour-booking-platform-research` | `~/tour-booking-platform-research` | ⚪ Reference | No | Static research, done |
 | Misc / dormant | `JobHunt`, `SwiftJob`, `crewcost`, `romanartisanmill`, `LakeSonoma`, `Marketing`, `FAITHFULDOGPAWS`, `Silo-app-*`, `iPhone-Claude-build` | various | ⚪ Dormant/experiments | — | Not actively coordinated; surface only if owner asks |
@@ -167,22 +167,25 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   phase-3-golive + overseer/2026-06-07 (trivial sidebar conflict — combine Resources/Gift Cards/Promos).
 - **Next buildable:** wizard→storefront click-through (OnboardingWizard.tsx is in phase-3-golive
   diff — do after that branch merges); web account slot-picker UI for 2.1 reschedule (also in that diff).
+  ⚠️ Both items are BLOCKED on `phase-3-golive` merge (owner action). Next run should skip to apex-quant
+  if marina remains first in rotation.
 
 ### 🟢 Apex Quant — algo-trading framework (Python)
 - **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
   Strategies emit `SignalEvent` only; `RiskManager` is the sole `OrderEvent` producer. Its own
   `CLAUDE.md/DECISIONS.md/ROADMAP.md/SESSION_PLAYBOOK.md` are the source of truth — **read first**.
-- **State:** build COMPLETE (Phases 1–6). ~416 tests, CI green on `main`. The **multi-asset trend
-  strategy is DEPLOYED LIVE ON PAPER** via a GitHub Actions weekday cron (commits state back each
-  run → `git pull` before local work). Currently on branch `feat/research-buildout` (**4 unpushed**,
-  8 dirty) chasing a 2nd edge: single-name cross-asset VALUE passes the Gauntlet but the universe is
-  SURVIVORSHIP-BIASED → strong candidate, NOT deployable.
+- **State:** build COMPLETE (Phases 1–6 + F1 + F2). 2517 tests, CI green on `main`. The
+  **multi-asset trend strategy is DEPLOYED LIVE ON PAPER** via GitHub Actions weekday cron.
+  **F2.3 DONE** (overseer/2026-06-08): daily heartbeat alert — `StateStore` meta table + 
+  `_heartbeat_if_due` dedup logic + `alerts_preview` mirrored. All F2 phases complete.
+  Remaining: F3.3 (live allocation engine) gated on W8 (needs PAID survivorship-free data).
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
-  flip `APEX_MODE=live` after Sharpe holds.
-- **Next buildable:** re-validate the value edge on point-in-time / survivorship-free constituents;
-  if it holds, build the deferred multi-strategy allocation engine (trend + value).
+  flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock W8/F3.3.
+- **Next buildable:** F3.3 — live multi-strategy allocation engine (20% value / 80% trend) — BUILD
+  in backtest mode only, config-gated off until W8 clears. Or: coverage uplift on thinnest modules
+  (backtester 62%, base_strategy 78%, config 79%) — self-contained, no data deps.
 - **Sibling:** `apex-trader` (private Next.js control surface) is a separate repo.
 
 ### 🟡 Supporting
