@@ -219,9 +219,11 @@ merge — agent-written content is often CI-untested.
 
 Keep this current — it's the owner's return-from-away checklist.
 
-- **Deploys (authorize a batch push):** boots `qa-fixes` branch (7 commits), websites main
-  (4 commits), marina `phase-3-golive` (24 commits, also needs Vercel admin-deploy fix), apex
-  `feat/research-buildout` (4 commits), master-prompts (2 commits).
+- **Deploy / merge decisions:** ✅ duke + websites PUSHED to main 2026-06-07 (prod deployed, both
+  verified live 200). marina `phase-3-golive` (24 ahead) now backed up on `origin` (preview only) —
+  awaiting your merge-to-main decision + still needs the Vercel admin-deploy fix. apex
+  `feat/research-buildout` (14 ahead) backed up on origin, intentionally NOT merged (research is
+  survivorship-biased, not deployable). boots advances on main via concurrent sessions.
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
   STRIPE_*, RESEND, VAPID, CRON_SECRET, GITHUB_APP_*, SENTRY_DSN).
 - **Duke (growth levers):** GBP as service-area business; real reviews + GOOGLE_REVIEW_URL;
