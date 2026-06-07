@@ -1,0 +1,60 @@
+# CLAUDE.md — project instructions (starter template)
+
+> Drop this into a project root as `CLAUDE.md`, then delete what doesn't apply and fill the `<…>` blanks.
+> Built from the strongest patterns in this repo — see [`../BEST-PATTERNS.md`](../BEST-PATTERNS.md) for the "why" behind each line (the `#n` tags below map to that file).
+> Keep it SHORT. A `CLAUDE.md` is loaded into context every session — every line costs tokens and attention. Cut anything the agent would already do correctly.
+
+---
+
+## Project
+- **What this is:** <one sentence — what the project does and who it's for>
+- **Stack:** <e.g. Next.js + TypeScript + Postgres / Python 3.12 + FastAPI>
+- **Don't touch:** <generated dirs, vendored code, secrets, migration history — e.g. `.env`, `*/migrations/*`>
+
+## How to work here
+
+### Before writing code  (#2, #4)
+- Match existing conventions. Look at neighboring files for style, naming, and structure before adding anything.
+- Never assume a library is available — check `<package.json / pyproject.toml / cargo.toml>` first. Don't introduce a new dependency without a reason.
+- When unsure how something works, **read the code first — never guess** file paths, APIs, or behavior.
+
+### Writing code  (#5, #11)
+- Fix problems at the **root cause**, not with surface patches. Don't swallow errors without meaningful handling.
+- Comment policy: <pick one — "Don't add comments unless asked" / "Comment non-obvious logic only" / "High-verbosity, code is reviewed by humans">.
+- Don't create new files (especially docs/README) unless needed for the task or I ask.
+
+### Finishing — always close the loop  (#12)
+Run these after any code change and fix what they report:
+```bash
+<lint command, e.g. npm run lint>
+<typecheck command, e.g. npm run typecheck  /  tsc --noEmit>
+<test command, e.g. npm test  /  pytest>
+```
+> ⚠️ Replace these with the project's REAL commands. If you don't know them, ask once and I'll add them here.
+
+### Verify, don't assume  (#3, #12)
+- Carry tasks to a **working, verified** end state — don't stop at the first plausible step.
+- Don't claim something works until you've run it. If tests fail, say so with the output.
+
+## Collaboration rules  (#6, #7, #8, #17)
+- **Commits/pushes:** <state your line — e.g. "Commit only when I explicitly ask. Never push to `main` (auto-deploys).">
+- **Multi-step tasks:** break into a checklist, do one item at a time, mark each done as you go.
+- **Output:** be concise — skip preamble/postamble; don't re-explain code I can read in the diff. <Adjust if you prefer more narration.>
+- **Proactiveness:** <"Pick sensible defaults on reversible calls and keep moving; only stop to ask on irreversible ones." — or the opposite if you want more check-ins.>
+
+## Worked example (teach the one rule you care most about)  (#1)
+> Replace this with the behavior you most want enforced — models imitate examples better than they follow abstract rules.
+
+```
+me: add a button to the dashboard
+you: [reads existing components in components/ first, matches their pattern,
+      adds the button, runs lint+typecheck, reports done in 1-2 lines]
+```
+
+---
+
+### Per-project tuning notes (delete this section in the real file)
+- **boots** — gamified coding academy; buildout in progress, **push is deferred to the end**, so set commit rule to "commit locally, don't push until I say."
+- **marina-booking-platform** — pushing `main` auto-deploys to Vercel and burns quota; set "commit locally, DON'T push" and treat `docs/` as the shared brain to read first.
+- **apex-quant** — read its own `CLAUDE.md` / `DECISIONS.md` first; one-module-per-session workflow; Python event-driven framework with a 7-gate validation Gauntlet.
+- **All projects** — machine is RAM-constrained (~7 GB); keep builds/test runs lean, avoid spawning many heavy processes at once.
