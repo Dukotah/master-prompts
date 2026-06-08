@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run G). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run H). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,14 +59,14 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run G) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run H) |
 |---|---|---|---|---|---|
 | **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `74e44106` (June 8 00:56 UTC; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** 4 behind — superseded, close it; `feat/track-boss-fights` open |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `1ff75fd9` (blog editorial redesign + form timeout fixes); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
 | **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `2811d0c0` (June 8 01:17 UTC; 2,500+ tests); **overseer/2026-06-07** fa1742b (coverage uplift); **overseer/2026-06-08** tip `b202e1d` (6 commits: F2.3 + walk-forward + README + ROADMAP docs + Decimal/float comment) — both awaiting owner merge (rebase needed for /2026-06-08) |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `fba30411`; **overseer/2026-06-08** b8b2535 (P1.1+P1.2 — BEHIND main, owner chose different design direction, needs decision); **overseer/2026-06-08-p1.3** `62ab2ad` (P1.3 severity hierarchy — on top of main, ready to merge) |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `fba3041` (unchanged); **overseer/2026-06-08** b8b2535 (P1.1+P1.2 — 6 BEHIND main, design diverged, needs owner decision); **overseer/2026-06-08-p1.3** `62ab2ad` (P1.3 — 1 ahead, ready to merge); **overseer/2026-06-08-p1.5** `e4bacc2` (P1.5 a11y — 1 ahead, ready to merge) |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -202,22 +202,24 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   (`~/shipsafe/ROADMAP.md`) is the source of truth: Phase 1 = de-slop. Work phases top-down.
 - **State:** v1 launched June 7. Owner's own commits (June 8) surpassed the overseer/2026-06-08
   branch — added cache-bust, mobile height fix, non-sticky header, deep-linkable scans, OG share
-  image, 404/robots/sitemap, touch icon, `?demo=1` sample-report mode. Main now at `fba30411`.
-  **P1.1 + P1.2 on `overseer/2026-06-08`** (b8b2535): brand identity + SVG icons. This branch is
-  ≥5 commits BEHIND main (owner's commits touched same files). **Rebase needed before merge.**
-  **Screenshot verification NOT done by agent** — owner must verify visually.
+  image, 404/robots/sitemap, touch icon, `?demo=1` sample-report mode. Main now at `fba3041`.
+  **P1.1 + P1.2 on `overseer/2026-06-08`** (b8b2535): 6 commits BEHIND main, design direction
+  diverged (owner kept copper/Hanken; branch had teal/Jakarta). Owner decision needed.
+  **P1.3** on `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy + issue summary pills — 1
+  ahead of main, clean, ready to merge. Screenshot-verify with `?demo=1`.
+  **P1.5** on `overseer/2026-06-08-p1.5` (e4bacc2): self-exemplary a11y — contrast fix, focus
+  management, aria-busy, aria-expanded, methodology callout HTML fix — 1 ahead, ready to merge.
+  **Screenshot verification NOT done by agent** — cloud env has no Chrome. Owner must verify both.
 - **Verify method:** SCREENSHOT every UI change in headless Chrome (never trust build-success),
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main to deploy is low-risk, owner's call.
-- **Next buildable:** P1.5 (self-exemplary a11y — keyboard nav, visible focus, AAA contrast,
-  semantic landmarks, ShipSafe passing its own engine); P1.6 (human copy pass — rewrite every
-  line to cut AI cadence); P1.7 (trust depth: /methodology + /about + limitations).
-  **P1.3 DONE** on `overseer/2026-06-08-p1.3` (62ab2ad) — ready to merge to main (GitHub Pages
-  deploy is free, low-risk). **P1.1+P1.2 status:** the old `overseer/2026-06-08` branch (b8b2535)
-  is 6 behind main and used a design direction (teal-navy, Plus Jakarta Sans) the owner chose not
-  to follow (kept copper/Hanken Grotesk). Owner should decide: close it, cherry-pick the SVG icon
-  improvements, or rebase with their design choices intact.
+- **Next buildable:** P1.6 (human copy pass — rewrite every line to cut AI cadence);
+  P1.7 (trust depth: /methodology + /about + limitations, pages exist but can be deepened).
+  **P1.3 DONE** on `overseer/2026-06-08-p1.3` (62ab2ad) — ready to merge.
+  **P1.5 DONE** on `overseer/2026-06-08-p1.5` (e4bacc2) — ready to merge.
+  **P1.1+P1.2 status:** the old `overseer/2026-06-08` branch (b8b2535)
+  is 6 behind main and used a design direction the owner chose not to follow. Owner decision needed.
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -263,7 +265,8 @@ merge — agent-written content is often CI-untested.
 Keep this current — it's the owner's return-from-away checklist.
 
 - **Deploy / merge decisions:**
-  - **shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): P1.3 severity hierarchy — clean branch from current main, zero conflicts. Screenshot-verify (no Chrome in cloud env), then merge to main (GitHub Pages deploy, free).
+  - **shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): P1.3 severity hierarchy — clean branch from current main, zero conflicts. Screenshot-verify (no Chrome in cloud env) with `?demo=1`, then merge to main (GitHub Pages, free).
+  - **shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): P1.5 self-exemplary a11y — contrast fix (--muted-2 #8a8276→#706860, 3.58→5.16:1 AA), aria-busy/focus management, aria-expanded FAQ, methodology callout HTML fix. Clean branch from main. Screenshot-verify (secondary text visually distinct but not too dark), then merge. NOTE: both p1.3 and p1.5 bump styles.css to v=7; merge them sequentially or resolve trivial conflict (bump to v=8).
   - **shipsafe `overseer/2026-06-08`** (b8b2535): P1.1+P1.2 brand identity — 6 commits behind main, used teal-navy/Plus Jakarta Sans design the owner didn't adopt. **Owner decision needed:** close it, or cherry-pick the SVG icon additions with the existing copper design palette.
   - **marina `phase-3-golive`** (24 ahead vs main) + **`overseer/2026-06-07`** (1 commit, promo admin UI) — awaiting merge-to-main decision + Vercel admin-deploy fix.
   - **boots `overseer/2026-06-07`** (2fec499, 4 commits BEHIND current main): owner's own work has surpassed this branch — close it.
