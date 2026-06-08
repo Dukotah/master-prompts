@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run M — 13th run this date). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run N — 14th run this date). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,14 +59,14 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run M) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run N) |
 |---|---|---|---|---|---|
 | **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `74e44106` (June 8 00:56 UTC; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** superseded — owner surpassed it, close; `feat/track-boss-fights` open |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `c639ca4b` (June 8 05:31 UTC — CRM outreach demo-link substitution fix); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
 | **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `c699015a` (June 8 05:39 UTC — `feat/risk-hardening` MERGED: 5 guardrails, 3129 tests, 94.51% cov); **overseer/2026-06-07** fa1742b + **overseer/2026-06-08** b202e1d both ~40+ behind main, awaiting rebase+merge |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); **overseer/2026-06-08-p2a** `1a4c93a` (contrast + P2.1a — pending merge); **overseer/2026-06-08-p2b** `a48ea9b` (P2.1b ARIA roles — 1 ahead of p2a); **overseer/2026-06-08-p2c** `43b69f2` (P2.1c tab-order — 1 ahead of p2b); **overseer/2026-06-08-p2d** `a563c41` (P2.1d video captions — 1 ahead of p2c); **overseer/2026-06-08-p2e** `9a36eb1` (P2.1e language-of-parts WCAG 3.1.2 — 1 ahead of p2d, Run M); old p1.3/p1.5/2026-06-08 branches superseded — close |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); **overseer/2026-06-08-p2a** `1a4c93a` (contrast + P2.1a — pending merge); **overseer/2026-06-08-p2b** `a48ea9b` (P2.1b ARIA roles — 1 ahead of p2a); **overseer/2026-06-08-p2c** `43b69f2` (P2.1c tab-order — 1 ahead of p2b); **overseer/2026-06-08-p2d** `a563c41` (P2.1d video captions — 1 ahead of p2c); **overseer/2026-06-08-p2e** `9a36eb1` (P2.1e language-of-parts WCAG 3.1.2 — 1 ahead of p2d); **overseer/2026-06-08-p2f** `1448a1c` (P2.1f skip link resolves WCAG 2.4.1 — 1 ahead of p2e, Run N); old p1.3/p1.5/2026-06-08 branches superseded — close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -213,15 +213,23 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   **overseer/2026-06-08-p2b** (a48ea9b, Run J): 10th accessibility check — "ARIA roles are valid"
   (WCAG 4.1.2, `fail`). Scans every `[role]` attribute against full WAI-ARIA 1.2 non-abstract
   taxonomy (~60 roles). Empty `role=""` and unrecognized values → fail. ShipSafe's own HTML passes.
-  methodology.html: "ten checks" + new table row. Branched from p2a. **1 ahead of p2a.**
+  methodology.html: "ten checks" + new table row. Branched from p2a.
   **overseer/2026-06-08-p2c** (43b69f2, Run K): 11th accessibility check — "Tab order preserved"
   (WCAG 2.4.3, `warn`). Detects `tabindex > 0` attributes. tabindex=0 or -1 → pass; positive → warn.
-  methodology.html: "eleven checks" + new table row. **1 ahead of p2b.**
+  methodology.html: "eleven checks" + new table row.
   **overseer/2026-06-08-p2d** (a563c41, Run L): 12th accessibility check — "Video captions"
   (WCAG 1.2.2 Level A, `fail`). Detects `<video>` without `<track kind="captions">` or
   `<track kind="subtitles">`. No video elements → info (correct for static pages). app.js v=11.
   methodology.html: "twelve checks" + new table row + new limitations bullet for audio-only.
-  WCAG_URL map extended with 1.2.2 → captions-prerecorded. **1 ahead of p2c / 4 ahead of main.**
+  WCAG_URL map extended with 1.2.2 → captions-prerecorded.
+  **overseer/2026-06-08-p2e** (9a36eb1, Run M): 13th accessibility check — "Language of parts"
+  (WCAG 3.1.2 Level AA, `fail`). Checks inline `lang` attributes (non-html elements) against BCP 47
+  regex. Empty lang="" → fail. No inline lang attrs → info (monolingual pages). app.js v=12.
+  **overseer/2026-06-08-p2f** (1448a1c, Run N): 14th accessibility check — "Skip link resolves"
+  (WCAG 2.4.1 Level A, `fail`). Detects skip links (class="skip", class*=skip-link, or anchor
+  with text matching /skip/). Verifies href fragment targets an element that exists in the DOM.
+  Pass: target found. Fail: skip link present but destination ID missing. Info: no skip link
+  detected. ShipSafe's own pages pass (href="#main" → id="main" exists). app.js v=13.
   Old branches superseded — all safe to close:
   - `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy done by owner's sweep.
   - `overseer/2026-06-08-p1.5` (e4bacc2): owner did P1.5 without --muted-2 fix (now in p2a).
@@ -230,9 +238,10 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main is low-risk, owner's call.
-- **Next buildable:** P2.1f — skip-link destination check (verify that the `href` in
-  `<a class="skip">` resolves to an element that exists in the DOM, WCAG 2.4.1 Level A).
-  Branch from p2e. (P2.1e language-of-parts shipped Run M.)
+- **Next buildable:** P2.1g — duplicate ID check (WCAG 4.1.1 Level A, `fail`). IDs must be
+  unique in HTML; duplicate IDs silently break `for`/`aria-labelledby`/`aria-describedby`
+  associations. Detectable from source: collect all `[id]` values, count occurrences, fail on any
+  duplicate. Branch from p2f.
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -297,6 +306,11 @@ Keep this current — it's the owner's return-from-away checklist.
     (13th a11y check, WCAG 3.1.2 Level AA). Merge after p2d. Demo `?demo=1` returns "info"
     (sample HTML has no inline lang attrs — correct for a monolingual page).
     Owner QA: paste a URL with `<span lang="">` → expect fail; `<span lang="fr">` → expect pass.
+  - **shipsafe `overseer/2026-06-08-p2f`** (1448a1c, 1 commit): P2.1f skip link resolves
+    (14th a11y check, WCAG 2.4.1 Level A). Merge p2a → p2b → p2c → p2d → p2e → p2f in order.
+    Demo `?demo=1` returns "info" for skip link (sample HTML has no skip link — correct for a
+    minimal AI-generated page). ShipSafe's own pages pass (href="#main" + id="main" present).
+    Owner QA: paste a URL with `<a class="skip" href="#nonexistent">` → expect fail + fix guidance.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): rejected design, 6 behind main.
