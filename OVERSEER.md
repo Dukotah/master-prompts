@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run L — 12th run this date). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run M — 13th run this date). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,14 +59,14 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run L) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run M) |
 |---|---|---|---|---|---|
 | **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `74e44106` (June 8 00:56 UTC; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** superseded — owner surpassed it, close; `feat/track-boss-fights` open |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `c639ca4b` (June 8 05:31 UTC — CRM outreach demo-link substitution fix); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
 | **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `c699015a` (June 8 05:39 UTC — `feat/risk-hardening` MERGED: 5 guardrails, 3129 tests, 94.51% cov); **overseer/2026-06-07** fa1742b + **overseer/2026-06-08** b202e1d both ~40+ behind main, awaiting rebase+merge |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); **overseer/2026-06-08-p2a** `1a4c93a` (contrast + P2.1a — pending merge); **overseer/2026-06-08-p2b** `a48ea9b` (P2.1b ARIA roles — 1 ahead of p2a); **overseer/2026-06-08-p2c** `43b69f2` (P2.1c tab-order — 1 ahead of p2b); **overseer/2026-06-08-p2d** `a563c41` (P2.1d video captions WCAG 1.2.2 — 1 ahead of p2c, Run L); old p1.3/p1.5/2026-06-08 branches superseded — close |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); **overseer/2026-06-08-p2a** `1a4c93a` (contrast + P2.1a — pending merge); **overseer/2026-06-08-p2b** `a48ea9b` (P2.1b ARIA roles — 1 ahead of p2a); **overseer/2026-06-08-p2c** `43b69f2` (P2.1c tab-order — 1 ahead of p2b); **overseer/2026-06-08-p2d** `a563c41` (P2.1d video captions — 1 ahead of p2c); **overseer/2026-06-08-p2e** `9a36eb1` (P2.1e language-of-parts WCAG 3.1.2 — 1 ahead of p2d, Run M); old p1.3/p1.5/2026-06-08 branches superseded — close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -230,11 +230,9 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main is low-risk, owner's call.
-- **Next buildable:** P2.1e — language-of-parts (detect `<span lang="...">` inconsistencies vs
-  document `lang`, WCAG 3.1.2 Level AA; warn when non-matching inline `lang` attributes suggest
-  mixed-language content without correct markup); or P2.1f — skip-link destination check
-  (verify that the `href` in `<a class="skip">` resolves to an element that exists in the DOM).
-  Branch from p2d.
+- **Next buildable:** P2.1f — skip-link destination check (verify that the `href` in
+  `<a class="skip">` resolves to an element that exists in the DOM, WCAG 2.4.1 Level A).
+  Branch from p2e. (P2.1e language-of-parts shipped Run M.)
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -295,6 +293,10 @@ Keep this current — it's the owner's return-from-away checklist.
     (12th a11y check, WCAG 1.2.2 Level A). Merge p2a → p2b → p2c → p2d in order.
     Demo `?demo=1` will show "info" for video captions (sample HTML has no video — correct).
     Owner QA: paste a URL with `<video>` without `<track kind="captions">` → expect fail + fix guidance.
+  - **shipsafe `overseer/2026-06-08-p2e`** (9a36eb1, 1 commit): P2.1e language-of-parts
+    (13th a11y check, WCAG 3.1.2 Level AA). Merge after p2d. Demo `?demo=1` returns "info"
+    (sample HTML has no inline lang attrs — correct for a monolingual page).
+    Owner QA: paste a URL with `<span lang="">` → expect fail; `<span lang="fr">` → expect pass.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): rejected design, 6 behind main.
