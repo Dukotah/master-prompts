@@ -176,23 +176,20 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
   Strategies emit `SignalEvent` only; `RiskManager` is the sole `OrderEvent` producer. Its own
   `CLAUDE.md/DECISIONS.md/ROADMAP.md/SESSION_PLAYBOOK.md` are the source of truth — **read first**.
-- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). F3.3 allocation engine ✅ DONE — owner
-  built `apex/risk/capital_allocation.py` `CapitalAllocator`, wired into `run_once._submit_orders`,
-  gated behind `AppConfig.allocation` (default None = OFF, safe until W8). `Bar.__post_init__`
-  invariant ✅ DONE (in models.py). Coverage uplift ✅ DONE (`overseer/2026-06-07`: backtester
-  62→100%, config 79→100%, base_strategy 78→96%). F2.3 heartbeat ✅ DONE (`overseer/2026-06-08`).
-  **Multi-asset trend strategy LIVE ON PAPER** via GitHub Actions. Owner also added a GitHub Pages
-  progress dashboard (`build_page` card UI). Main now at `3b9bd7c0`.
-  **overseer/2026-06-07** (coverage) + **overseer/2026-06-08** (F2.3) both awaiting owner merge.
+- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). F3.3 allocation engine ✅ DONE.
+  `Bar.__post_init__` invariant ✅ DONE. Coverage uplift ✅ DONE (`overseer/2026-06-07`: backtester
+  62→100%, config 79→100%, base_strategy 78→96%). F2.3 heartbeat ✅ DONE. Gate-3 walk-forward
+  efficiency ✅ CLOSED (34a32bb: `_MIN_IS_SHARPE` guard + ROADMAP checked off, 3074 tests).
+  **Multi-asset trend strategy LIVE ON PAPER** via GitHub Actions. Owner pushed 3 web app commits
+  (feature-tour + layperson redesigns). Main now at `7a9e4c76`.
+  **overseer/2026-06-07** (coverage) + **overseer/2026-06-08** (F2.3 + walk-forward) awaiting merge.
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
   flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock W8/F3.3
   live sleeve. Merge `overseer/2026-06-07` + `overseer/2026-06-08` when convenient.
-- **Next buildable:** Gate-3 walk-forward "efficiency" metric investigation (reports anomalous
-  values e.g. 66, 397 — likely divide-by-near-zero in a window; `apex/validation/walk_forward.py`).
-  OR: local dev parity (`make check` Makefile so `ruff check + ruff format --check + pytest` runs
-  in one command, matching CI). OR: README quickstart for a cold-start operator.
+- **Next buildable:** README quickstart for a cold-start operator. OR: any remaining open
+  items in apex-quant ROADMAP.md (Gate-3 efficiency + Makefile already closed).
 - **Sibling:** `apex-trader` (private Next.js control surface) is a separate repo.
 
 ### 🟢 ShipSafe — Copper Bay Labs product #1 (from the forge factory)
