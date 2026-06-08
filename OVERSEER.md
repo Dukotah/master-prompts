@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run H). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run I). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,14 +59,14 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run H) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run I) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `74e44106` (June 8 00:56 UTC; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** 4 behind — superseded, close it; `feat/track-boss-fights` open |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `74e44106` (June 8 00:56 UTC; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** superseded — owner surpassed it, close; `feat/track-boss-fights` open |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
-| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `1ff75fd9` (blog editorial redesign + form timeout fixes); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
+| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `c639ca4b` (June 8 05:31 UTC — CRM outreach demo-link substitution fix); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `2811d0c0` (June 8 01:17 UTC; 2,500+ tests); **overseer/2026-06-07** fa1742b (coverage uplift); **overseer/2026-06-08** tip `b202e1d` (6 commits: F2.3 + walk-forward + README + ROADMAP docs + Decimal/float comment) — both awaiting owner merge (rebase needed for /2026-06-08) |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `fba3041` (unchanged); **overseer/2026-06-08** b8b2535 (P1.1+P1.2 — 6 BEHIND main, design diverged, needs owner decision); **overseer/2026-06-08-p1.3** `62ab2ad` (P1.3 — 1 ahead, ready to merge); **overseer/2026-06-08-p1.5** `e4bacc2` (P1.5 a11y — 1 ahead, ready to merge) |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `c699015a` (June 8 05:39 UTC — `feat/risk-hardening` MERGED: 5 guardrails, 3129 tests, 94.51% cov); **overseer/2026-06-07** fa1742b + **overseer/2026-06-08** b202e1d both ~40+ behind main, awaiting rebase+merge |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC — owner P1 sweep: P1.5+P1.6+P1.7+P1.8); **overseer/2026-06-08-p2a** `1a4c93a` (contrast fix + P2.1a — 1 ahead, ready); old p1.3/p1.5/2026-06-08 branches superseded — close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -93,8 +93,8 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **State:** huge surface shipped & live. 151 modules / 1039 lessons / **377 unit tests** /
   1971 curriculum tests (June 7 2026). Owner's SEO push June 8: 60 blog posts total, FAQPage +
   ItemList JSON-LD schema on posts/paths, /projects/[slug] noindex bug fixed, sitemap expanded.
-  `overseer/2026-06-07` branch (+2: analytics instrumentation + DailyChallenge P1.6b tests) is now
-  4 commits behind main — superseded by owner's own work; owner should close it.
+  `overseer/2026-06-07` branch (+2: analytics instrumentation + DailyChallenge P1.6b tests) is
+  superseded by owner's own work; owner should close it.
 - **Gotchas:** `check-curriculum.ts` runs starter stubs AND solutions with NO timeout — an
   unbounded loop in a stub or a drain-loop test HANGS forever. JS runner = Web Worker (no
   window/localStorage). Cloud agents push to `origin/main` AND open PRs — fetch+rebase before push.
@@ -107,7 +107,7 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 ### 🟢 Websites — outreach demo-site factory (Astro)
 - **What:** mass-generates per-business demo sites at `/p/<slug>` (one Vercel deploy hosts all
   demos in `sites/demo-gallery/`) for cold outreach. `npm run generate-prospects -- data/<file>.csv`.
-- **State:** v2 design system live; deep anti-"AI-slop" framework (per-business fonts/palettes/
+- **State:** v2 design system live; deep anti-“AI-slop” framework (per-business fonts/palettes/
   shape, OKLab color, section-variant pool, real-photo scraping + Sharp photo-quality scorer,
   astro:assets image pipeline, vision-QA harness, outreach funnel w/ claim banner + noindex gate).
   Latest: 4 fresh real-scrape demos live on main (Golden Gear Automotive, Joon Hair, Petaluma Pie
@@ -128,11 +128,13 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Stack:** Next.js 16 + Tailwind v4. Sonoma County web/IT/cyber/AI for small businesses.
   `@/config/site` + `@/config/pricing` are single sources of truth. Has a full CRM (`/crm`,
   Upstash Redis, db.ts), 30+ blog posts, large service×city page matrix, 4 free-tool lead magnets.
-- **State:** `main` at 1ff75fd9 — blog editorial redesign (featured card + category filter + grid +
-  shared ArticleHeader with contrast-fixed byline/date), form timeout fixes (withTimeout helper,
-  15s client AbortSignal, /contact 308 redirect), Resend email-event ingestion + drip cron, CI
-  pipeline + Playwright E2E smoke suite all on main. Service×city matrix complete. Lead capture
-  fully wired. In-flight: `feat/hardening-sprint1`, `feat/website-links-to-crm`.
+- **State:** `main` at `c639ca4b` (June 8 05:31 UTC) — outreach CRM demo-link fix: `{demoUrl}` and
+  `{claimByDate}` now substituted server-side in outreach emails; `EmailComposer` posts
+  `previewUrl`/`claimByDate` and guards against sending demo template when no demo exists.
+  Previous: blog editorial redesign (featured card + category filter), form timeout fixes (withTimeout,
+  15s AbortSignal, /contact 308 redirect), Resend email-event ingestion + drip cron, CI pipeline +
+  Playwright E2E smoke suite. Service×city matrix complete. In-flight: `feat/hardening-sprint1`,
+  `feat/website-links-to-crm`.
 - **Gotchas:** ⚠️ historically the local checkout is a stale branch — **always fetch origin/main
   first**. One CRM only now. Lint flags `Date.now()` in component scope — use a module-level helper.
 - **Owner-action (the real growth levers — only the owner can do these):** Google Business Profile
@@ -171,26 +173,24 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
   Strategies emit `SignalEvent` only; `RiskManager` is the sole `OrderEvent` producer. Its own
   `CLAUDE.md/DECISIONS.md/ROADMAP.md/SESSION_PLAYBOOK.md` are the source of truth — **read first**.
-- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). F3.3 allocation engine ✅ DONE (in main).
-  `Bar.__post_init__` invariant ✅ DONE. `make check` / `scripts/check.sh` / `scripts/check.ps1` ✅
-  DONE. Coverage uplift ✅ DONE (overseer/2026-06-07, awaiting merge). F2.3 heartbeat ✅ DONE.
-  Gate-3 walk-forward fix ✅ DONE. Interactive web app (`webapp.py`) ✅ DONE — run Gauntlet from
-  browser. **Main at `2811d0c0`** (June 8 01:17 UTC, 2,500+ tests). README fixed (stale 414→2,500+,
-  webapp documented), ROADMAP IMPROVEMENTS closed (3 items) — both on overseer/2026-06-08.
-  Portfolio Decimal/float boundary comment ✅ DONE (Run F, commit `b202e1d`).
-  **Multi-asset trend strategy LIVE ON PAPER** via GitHub Actions.
-  **overseer/2026-06-07** (fa1742b, coverage uplift) + **overseer/2026-06-08** (6 commits: F2.3 +
-  walk-forward + README + ROADMAP docs + Decimal/float boundary comment) both awaiting owner merge;
-  owner needs to rebase overseer/2026-06-08 onto main (4 webapp commits ahead on main) before merging.
+- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). `feat/risk-hardening` MERGED to main
+  (c699015a, June 8 05:39): 5 fail-closed guardrails (stale-data guard with injected Clock,
+  concentration caps per sector/asset-class/group, hard notional limits per-order + per-day,
+  ATR stop validation + trailing-stop gate, consecutive-rejection circuit breaker that halts on N
+  failures). 3129 tests passing, 94.51% coverage. Multi-asset trend strategy LIVE ON PAPER.
+  Coverage uplift (`overseer/2026-06-07`, fa1742b) + F2.3/walk-forward/docs (`overseer/2026-06-08`,
+  b202e1d) both awaiting owner merge; both now ~40+ commits behind main after risk-hardening merge
+  — rebase required before either can land.
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
   flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock F3.3
-  live sleeve. Merge `overseer/2026-06-07` + `overseer/2026-06-08` when convenient (rebase needed
-  for the latter before it can land cleanly).
-- **Next buildable:** probe remaining F1 research items or incremental test gap fills on any module
-  below 85% branch coverage — once `overseer/2026-06-07` coverage uplift merges. The overseer
-  branch queue is getting long; future apex runs should hold until owner merges current branches.
+  live sleeve. Rebase + merge `overseer/2026-06-07` + `overseer/2026-06-08` when convenient.
+  Close stale branches: `feat/risk-hardening` (merged), `feat/risk-hardening` clones, `feat/status-export`,
+  `feat/research-buildout` (diverged).
+- **Next buildable:** hold until owner merges/rebases the two overseer branches. Branch queue too
+  long to add more work safely. Once cleared: probe Gate-3 walk-forward efficiency metric anomaly
+  (reported anomalous values like 66/397 in IMPROVEMENTS) or targeted coverage fills.
 
 ### 🟢 ShipSafe — Copper Bay Labs product #1 (from the forge factory)
 - **What:** standalone static web app (vanilla HTML/CSS/JS, GitHub Pages, $0). Paste a URL → ~20
@@ -200,26 +200,26 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   lead bridge.
 - **The mandate:** make it NOT look AI-built — credibility is the product. Its own roadmap
   (`~/shipsafe/ROADMAP.md`) is the source of truth: Phase 1 = de-slop. Work phases top-down.
-- **State:** v1 launched June 7. Owner's own commits (June 8) surpassed the overseer/2026-06-08
-  branch — added cache-bust, mobile height fix, non-sticky header, deep-linkable scans, OG share
-  image, 404/robots/sitemap, touch icon, `?demo=1` sample-report mode. Main now at `fba3041`.
-  **P1.1 + P1.2 on `overseer/2026-06-08`** (b8b2535): 6 commits BEHIND main, design direction
-  diverged (owner kept copper/Hanken; branch had teal/Jakarta). Owner decision needed.
-  **P1.3** on `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy + issue summary pills — 1
-  ahead of main, clean, ready to merge. Screenshot-verify with `?demo=1`.
-  **P1.5** on `overseer/2026-06-08-p1.5` (e4bacc2): self-exemplary a11y — contrast fix, focus
-  management, aria-busy, aria-expanded, methodology callout HTML fix — 1 ahead, ready to merge.
-  **Screenshot verification NOT done by agent** — cloud env has no Chrome. Owner must verify both.
+- **State:** Owner’s comprehensive P1 sweep landed on main (a86dff79, June 8 05:31): P1.2 custom SVG
+  icons (inline ICON set, no emoji), P1.3 severity hierarchy (STATUS_ORDER sort + letter grade),
+  P1.4 shareable result (copy button + URL deep-link), P1.5 a11y (skip link, focus-visible,
+  reduced-motion, semantic landmarks), P1.6 human copy pass, P1.7 trust depth (methodology + about
+  deepened), P1.8 polish (skeleton loading, microinteractions). Brand: copper + Fraunces/Hanken.
+  NOTE: owner’s P1.5 did NOT fix `--muted-2:#8a8276` (3.58:1, WCAG AA fail).
+  **overseer/2026-06-08-p2a** (1a4c93a, June 8 Run I): (1) `--muted-2` #8a8276→#706860 contrast
+  fix; `.nav a[aria-current]` underline; all HTML on unified `?v=8`. (2) 9th accessibility check
+  “Descriptive link text” (WCAG 2.4.4, `warn`); focus management post-scan; `aria-expanded` FAQ
+  sync; methodology updated. **1 ahead of main, ready to merge.**
+  Old branches superseded — all safe to close:
+  - `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy done by owner’s sweep.
+  - `overseer/2026-06-08-p1.5` (e4bacc2): owner did P1.5 without --muted-2 fix (now in p2a).
+  - `overseer/2026-06-08` (b8b2535): teal/Jakarta design rejected, 6 behind main.
 - **Verify method:** SCREENSHOT every UI change in headless Chrome (never trust build-success),
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
-  branches; merging to main to deploy is low-risk, owner's call.
-- **Next buildable:** P1.6 (human copy pass — rewrite every line to cut AI cadence);
-  P1.7 (trust depth: /methodology + /about + limitations, pages exist but can be deepened).
-  **P1.3 DONE** on `overseer/2026-06-08-p1.3` (62ab2ad) — ready to merge.
-  **P1.5 DONE** on `overseer/2026-06-08-p1.5` (e4bacc2) — ready to merge.
-  **P1.1+P1.2 status:** the old `overseer/2026-06-08` branch (b8b2535)
-  is 6 behind main and used a design direction the owner chose not to follow. Owner decision needed.
+  branches; merging to main is low-risk, owner’s call.
+- **Next buildable:** P2.1b — ARIA role validity check (detect `role=""` or invalid ARIA role
+  values, which screen readers mishandle); P1.9 (real domain) is owner action.
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -265,15 +265,28 @@ merge — agent-written content is often CI-untested.
 Keep this current — it's the owner's return-from-away checklist.
 
 - **Deploy / merge decisions:**
-  - **shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): P1.3 severity hierarchy — clean branch from current main, zero conflicts. Screenshot-verify (no Chrome in cloud env) with `?demo=1`, then merge to main (GitHub Pages, free).
-  - **shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): P1.5 self-exemplary a11y — contrast fix (--muted-2 #8a8276→#706860, 3.58→5.16:1 AA), aria-busy/focus management, aria-expanded FAQ, methodology callout HTML fix. Clean branch from main. Screenshot-verify (secondary text visually distinct but not too dark), then merge. NOTE: both p1.3 and p1.5 bump styles.css to v=7; merge them sequentially or resolve trivial conflict (bump to v=8).
-  - **shipsafe `overseer/2026-06-08`** (b8b2535): P1.1+P1.2 brand identity — 6 commits behind main, used teal-navy/Plus Jakarta Sans design the owner didn't adopt. **Owner decision needed:** close it, or cherry-pick the SVG icon additions with the existing copper design palette.
-  - **marina `phase-3-golive`** (24 ahead vs main) + **`overseer/2026-06-07`** (1 commit, promo admin UI) — awaiting merge-to-main decision + Vercel admin-deploy fix.
-  - **boots `overseer/2026-06-07`** (2fec499, 4 commits BEHIND current main): owner's own work has surpassed this branch — close it.
-  - **apex `overseer/2026-06-07`** (fa1742b, coverage uplift): safe to merge any time (cherry-pick or rebase).
-  - **apex `overseer/2026-06-08`** (tip `b202e1d`, 6 commits: F2.3 + walk-forward + README + ROADMAP docs + portfolio Decimal/float boundary comment): safe to merge but **requires rebase** onto main first (main has 4 webapp commits ahead that don't conflict with these changes).
-  - **apex `feat/research-buildout`** (22 ahead / 15 behind): diverged; rebase/squash-merge decision needed.
-  - **apex `feat/risk-hardening`** + **`feat/status-export`** (each 1 ahead / ~40 behind): almost certainly obsolete — close these branches.
+  - **shipsafe `overseer/2026-06-08-p2a`** (1a4c93a, 2 commits): `--muted-2` contrast fix
+    (#8a8276→#706860, 3.58:1→5.16:1 AA) + aria-current nav underline + unified `?v=8` + P2.1a
+    link-purpose check + focus management + aria-expanded FAQ. Screenshot-verify `?demo=1`
+    (secondary text slightly darker, report h2 focus after scan, FAQ aria-expanded state), then
+    merge to main (GitHub Pages, free).
+  - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded — severity hierarchy
+    + letter grade done by owner’s sweep.
+  - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded — owner did P1.5,
+    the --muted-2 fix is in p2a.
+  - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): teal/Jakarta design rejected, 6 behind
+    main. Close.
+  - **marina `phase-3-golive`** (24 ahead vs main) + **`overseer/2026-06-07`** (1 commit, promo
+    admin UI) — awaiting merge-to-main decision + Vercel admin-deploy fix.
+  - **boots `overseer/2026-06-07`** (superseded by owner's own work) — close it.
+  - **apex `overseer/2026-06-07`** (fa1742b, coverage uplift): needs rebase onto current main
+    (feat/risk-hardening added ~33 commits) before it can merge cleanly.
+  - **apex `overseer/2026-06-08`** (tip `b202e1d`, F2.3 + walk-forward + docs): also needs rebase
+    onto current main before merging.
+  - **CLOSE apex `feat/risk-hardening`**: already merged to main (`c699015`).
+  - **apex `feat/research-buildout`** (22 ahead / ~55 behind after risk-hardening): heavily
+    diverged; rebase/squash-merge or close decision needed.
+  - **apex `feat/status-export`** (~1 ahead / ~55+ behind): almost certainly obsolete — close.
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
   STRIPE_*, RESEND, VAPID, CRON_SECRET, GITHUB_APP_*, SENTRY_DSN).
 - **Duke (growth levers):** GBP as service-area business; real reviews + GOOGLE_REVIEW_URL;
@@ -287,7 +300,8 @@ Keep this current — it's the owner's return-from-away checklist.
   onto main (trivial sidebar conflict: combine Resources/Gift Cards/Promos nav items).
 - **Apex Quant:** let the 30-day paper gate run; flip to live only after Sharpe holds; decide
   whether to fund a survivorship-free dataset for the value edge (needed for F3.3 live sleeve).
-  Rebase + merge `overseer/2026-06-08` (rebase needed; then safe). Merge `overseer/2026-06-07`.
+  Rebase + merge `overseer/2026-06-07` + `overseer/2026-06-08` (both need rebase onto new main).
+  Close stale branches: `feat/risk-hardening` (merged), `feat/status-export`, review `feat/research-buildout`.
 - **ShipSafe:** P1.9 real domain (`shipsafe.app` or `copperbaylabs.com` subdomain); custom-domain
   GitHub Pages deploy. After domain: P4.2 launch (Product Hunt / Show HN) — only after Phase 1 clears.
 - **Sonoma scraper:** local main is 24 behind origin — pull/sync.
