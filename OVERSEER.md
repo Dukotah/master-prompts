@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run O — 15th run this date). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run P — 16th run this date). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -59,14 +59,14 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run N) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run P) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `4ae73a3c` (June 8 — feat/catalog-pricing-dashboard merged PR #23); **overseer/2026-06-07** superseded — close; `feat/track-boss-fights` open |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `4ae73a3c` (June 8 21:11 UTC — feat/catalog-pricing-dashboard merged PR #23); `feat/track-boss-fights` open |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
-| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `7c3a041` (June 8 — website-signal block + open-site link + score breakdown in LeadPanel, PR #34); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
+| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `7c3a0412` (June 8 21:21 UTC — PR #34 website-signal block + PR #33 deep-enriched lead data); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `f752197f` (June 8 — trading cycle state update [skip ci]); **overseer/2026-06-07** fa1742b (1 ahead, ~40+ behind) + **overseer/2026-06-08** b202e1d (5 ahead, ~40+ behind), both awaiting rebase+merge |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); **overseer/2026-06-08-p2a** `1a4c93a` (contrast + P2.1a — pending merge); **overseer/2026-06-08-p2b** `a48ea9b` (P2.1b ARIA roles — 1 ahead of p2a); **overseer/2026-06-08-p2c** `43b69f2` (P2.1c tab-order — 1 ahead of p2b); **overseer/2026-06-08-p2d** `a563c41` (P2.1d video captions — 1 ahead of p2c); **overseer/2026-06-08-p2e** `9a36eb1` (P2.1e language-of-parts WCAG 3.1.2 — 1 ahead of p2d); **overseer/2026-06-08-p2f** `1448a1c` (P2.1f skip link resolves WCAG 2.4.1 — 1 ahead of p2e); **overseer/2026-06-08-p2g** `357e7fe` (P2.1g duplicate IDs WCAG 4.1.1 — 1 ahead of p2f, Run O); old p1.3/p1.5/2026-06-08 branches superseded — close |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `f752197f` (June 8 21:28 UTC — cron state update); `cf12b22a` (21:27 UTC — realignment: coverage floor 70→90, watchdog, preflight self-heal, 3155 tests, 94.53% coverage); **overseer/2026-06-07** fa1742b + **overseer/2026-06-08** b202e1d both now ~46+ behind, need rebase |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); chain p2a→p2h all pending owner merge (each 1 commit, linear); **overseer/2026-06-08-p2h** `93df640` (P2.1h ARIA required attributes — Run P); old p1.3/p1.5/2026-06-08 branches superseded — close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -93,8 +93,8 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **State:** huge surface shipped & live. 151 modules / 1039 lessons / **377 unit tests** /
   1971 curriculum tests (June 7 2026). Owner's SEO push June 8: 60 blog posts total, FAQPage +
   ItemList JSON-LD schema on posts/paths, /projects/[slug] noindex bug fixed, sitemap expanded.
-  `overseer/2026-06-07` branch (+2: analytics instrumentation + DailyChallenge P1.6b tests) is
-  superseded by owner's own work; owner should close it.
+  PRs #21 (career-pack-polish), #22 (first-lesson-loop unblock), #23 (catalog-pricing-dashboard audit)
+  all merged June 8 21:11 UTC. `overseer/2026-06-07` branch superseded by owner's own work; close.
 - **Gotchas:** `check-curriculum.ts` runs starter stubs AND solutions with NO timeout — an
   unbounded loop in a stub or a drain-loop test HANGS forever. JS runner = Web Worker (no
   window/localStorage). Cloud agents push to `origin/main` AND open PRs — fetch+rebase before push.
@@ -128,13 +128,11 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Stack:** Next.js 16 + Tailwind v4. Sonoma County web/IT/cyber/AI for small businesses.
   `@/config/site` + `@/config/pricing` are single sources of truth. Has a full CRM (`/crm`,
   Upstash Redis, db.ts), 30+ blog posts, large service×city page matrix, 4 free-tool lead magnets.
-- **State:** `main` at `c639ca4b` (June 8 05:31 UTC) — outreach CRM demo-link fix: `{demoUrl}` and
-  `{claimByDate}` now substituted server-side in outreach emails; `EmailComposer` posts
-  `previewUrl`/`claimByDate` and guards against sending demo template when no demo exists.
-  Previous: blog editorial redesign (featured card + category filter), form timeout fixes (withTimeout,
-  15s AbortSignal, /contact 308 redirect), Resend email-event ingestion + drip cron, CI pipeline +
-  Playwright E2E smoke suite. Service×city matrix complete. In-flight: `feat/hardening-sprint1`,
-  `feat/website-links-to-crm`.
+- **State:** `main` at `7c3a0412` (June 8 21:21 UTC) — CRM now shows deep-enriched lead data:
+  grade pills, deliverability badges, decision-maker block, phone-type chips, website quality
+  chips (site_quality / digital_presence / builder / slow-load flag), score breakdowns (score_why).
+  `{demoUrl}`/`{claimByDate}` substituted server-side in outreach emails. In-flight:
+  `feat/hardening-sprint1`, `feat/website-links-to-crm`.
 - **Gotchas:** ⚠️ historically the local checkout is a stale branch — **always fetch origin/main
   first**. One CRM only now. Lint flags `Date.now()` in component scope — use a module-level helper.
 - **Owner-action (the real growth levers — only the owner can do these):** Google Business Profile
@@ -170,24 +168,23 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   ⚠️ Both items are BLOCKED on `phase-3-golive` merge (owner action). Skip to apex/shipsafe if marina is first in rotation.
 
 ### 🟢 Apex Quant — algo-trading framework (Python)
-- **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
+- **What:** event-driven, asset-agnostic trading framework with a 9-gate validation Gauntlet.
   Strategies emit `SignalEvent` only; `RiskManager` is the sole `OrderEvent` producer. Its own
   `CLAUDE.md/DECISIONS.md/ROADMAP.md/SESSION_PLAYBOOK.md` are the source of truth — **read first**.
-- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). `feat/risk-hardening` MERGED to main
-  (c699015a, June 8 05:39): 5 fail-closed guardrails (stale-data guard with injected Clock,
-  concentration caps per sector/asset-class/group, hard notional limits per-order + per-day,
-  ATR stop validation + trailing-stop gate, consecutive-rejection circuit breaker that halts on N
-  failures). 3129 tests passing, 94.51% coverage. Multi-asset trend strategy LIVE ON PAPER.
-  Coverage uplift (`overseer/2026-06-07`, fa1742b) + F2.3/walk-forward/docs (`overseer/2026-06-08`,
-  b202e1d) both awaiting owner merge; both now ~40+ commits behind main after risk-hardening merge
-  — rebase required before either can land.
+- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). Realignment commit (`cf12b22a`, June 8
+  21:27 UTC) landed on main: coverage floor raised 70→90 (measured 94.53%), architecture fitness
+  tests enforce golden rules 1–2, watchdog workflow (>26h dead-man's-switch), preflight self-heals
+  `data/state/` dir. 3155 tests passing, 94.53% coverage. Multi-asset trend strategy LIVE ON PAPER.
+  `feat/risk-hardening` MERGED to main (c699015a): 5 fail-closed guardrails. `overseer/2026-06-07`
+  (fa1742b) + `overseer/2026-06-08` (b202e1d) now ~46+ behind main after realignment — both need
+  rebase before landing.
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
   flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock F3.3
   live sleeve. Rebase + merge `overseer/2026-06-07` + `overseer/2026-06-08` when convenient.
-  Close stale branches: `feat/risk-hardening` (merged), `feat/risk-hardening` clones, `feat/status-export`,
-  `feat/research-buildout` (diverged).
+  Close stale branches: `feat/risk-hardening` (merged), `feat/status-export` (~1 ahead, obsolete),
+  review `feat/research-buildout` (22 ahead / ~55+ behind, heavily diverged).
 - **Next buildable:** hold until owner merges/rebases the two overseer branches. Branch queue too
   long to add more work safely. Once cleared: probe Gate-3 walk-forward efficiency metric anomaly
   (reported anomalous values like 66/397 in IMPROVEMENTS) or targeted coverage fills.
@@ -206,36 +203,18 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   reduced-motion, semantic landmarks), P1.6 human copy pass, P1.7 trust depth (methodology + about
   deepened), P1.8 polish (skeleton loading, microinteractions). Brand: copper + Fraunces/Hanken.
   NOTE: owner's P1.5 did NOT fix `--muted-2:#8a8276` (3.58:1, WCAG AA fail).
-  **overseer/2026-06-08-p2a** (1a4c93a, Run I): (1) `--muted-2` #8a8276→#706860 contrast fix;
-  `.nav a[aria-current]` underline; all HTML on unified `?v=8`. (2) 9th accessibility check
-  "Descriptive link text" (WCAG 2.4.4, `warn`); focus management post-scan; `aria-expanded` FAQ
-  sync; methodology updated. **1 ahead of main, pending owner merge.**
-  **overseer/2026-06-08-p2b** (a48ea9b, Run J): 10th accessibility check — "ARIA roles are valid"
-  (WCAG 4.1.2, `fail`). Scans every `[role]` attribute against full WAI-ARIA 1.2 non-abstract
-  taxonomy (~60 roles). Empty `role=""` and unrecognized values → fail. ShipSafe's own HTML passes.
-  methodology.html: "ten checks" + new table row. Branched from p2a.
-  **overseer/2026-06-08-p2c** (43b69f2, Run K): 11th accessibility check — "Tab order preserved"
-  (WCAG 2.4.3, `warn`). Detects `tabindex > 0` attributes. tabindex=0 or -1 → pass; positive → warn.
-  methodology.html: "eleven checks" + new table row.
-  **overseer/2026-06-08-p2d** (a563c41, Run L): 12th accessibility check — "Video captions"
-  (WCAG 1.2.2 Level A, `fail`). Detects `<video>` without `<track kind="captions">` or
-  `<track kind="subtitles">`. No video elements → info (correct for static pages). app.js v=11.
-  methodology.html: "twelve checks" + new table row + new limitations bullet for audio-only.
-  WCAG_URL map extended with 1.2.2 → captions-prerecorded.
-  **overseer/2026-06-08-p2e** (9a36eb1, Run M): 13th accessibility check — "Language of parts"
-  (WCAG 3.1.2 Level AA, `fail`). Checks inline `lang` attributes (non-html elements) against BCP 47
-  regex. Empty lang="" → fail. No inline lang attrs → info (monolingual pages). app.js v=12.
-  **overseer/2026-06-08-p2f** (1448a1c, Run N): 14th accessibility check — "Skip link resolves"
-  (WCAG 2.4.1 Level A, `fail`). Detects skip links (class="skip", class*=skip-link, or anchor
-  with text matching /skip/). Verifies href fragment targets an element that exists in the DOM.
-  Pass: target found. Fail: skip link present but destination ID missing. Info: no skip link
-  detected. ShipSafe's own pages pass (href="#main" → id="main" exists). app.js v=13.
-  **overseer/2026-06-08-p2g** (357e7fe, Run O): 15th accessibility check — "Duplicate IDs"
-  (WCAG 4.1.1 Level A, `fail`). Collects all `[id]` attributes, counts occurrences per value,
-  fails on any duplicate. Duplicate IDs silently break for/aria-labelledby/aria-describedby.
-  Pass: all IDs unique. Fail: one or more duplicate ID values (lists up to 5). Info: no id attrs.
-  ShipSafe's own pages pass (all IDs unique). Demo `?demo=1` returns info (sample has no ids).
-  app.js v=14. methodology.html: "fifteen checks" + new table row + new limitations bullet.
+  **Pending-merge chain (p2a→p2h, 8 branches, each 1 commit, merge in order):**
+  - **p2a** (1a4c93a): (1) `--muted-2` #8a8276→#706860 contrast fix; `.nav a[aria-current]`
+    underline; all HTML on unified `?v=8`. (2) 9th a11y check "Descriptive link text" (WCAG 2.4.4,
+    `warn`); focus management post-scan; `aria-expanded` FAQ sync; methodology updated.
+  - **p2b** (a48ea9b): 10th a11y check — "ARIA roles are valid" (WCAG 4.1.2, `fail`).
+  - **p2c** (43b69f2): 11th a11y check — "Tab order preserved" (WCAG 2.4.3, `warn`).
+  - **p2d** (a563c41): 12th a11y check — "Video captions" (WCAG 1.2.2, `fail`).
+  - **p2e** (9a36eb1): 13th a11y check — "Language of parts" (WCAG 3.1.2, `fail`).
+  - **p2f** (1448a1c): 14th a11y check — "Skip link resolves" (WCAG 2.4.1, `fail`).
+  - **p2g** (357e7fe): 15th a11y check — "Duplicate IDs" (WCAG 4.1.1, `fail`).
+  - **p2h** (93df640, Run P): 16th a11y check — "ARIA required attributes" (WCAG 4.1.2, `fail`).
+    Checks 12 roles against their WAI-ARIA 1.2 required state/property attributes. app.js v=15.
   Old branches superseded — all safe to close:
   - `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy done by owner's sweep.
   - `overseer/2026-06-08-p1.5` (e4bacc2): owner did P1.5 without --muted-2 fix (now in p2a).
@@ -244,11 +223,11 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main is low-risk, owner's call.
-- **Next buildable:** P2.1h — ARIA required attributes (WCAG 4.1.2 Level A, `fail`). Certain ARIA
-  roles have required state/property attributes per WAI-ARIA 1.2 (e.g. `role="combobox"` requires
-  `aria-expanded`; `role="slider"` requires `aria-valuenow`/`aria-valuemin`/`aria-valuemax`;
-  `role="checkbox"` requires `aria-checked`). Detectable from source: for each element with a known
-  role that has required attributes, check those attributes are present. Branch from p2g.
+- **Next buildable:** P2.1i — Autocomplete on personal-data fields (WCAG 1.3.5 Identify Input
+  Purpose, Level AA, `warn`). Detects `<input>` elements collecting personal information (type=email,
+  tel, password, or name/address/zip/phone in placeholder/name attr) that lack an `autocomplete`
+  attribute. Missing autocomplete prevents password managers and browser autofill — a significant
+  barrier for users with cognitive or motor disabilities. Branch from p2h.
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -299,44 +278,38 @@ Keep this current — it's the owner's return-from-away checklist.
     Screenshot-verify `?demo=1`, then merge to main **first** (p2b is based on p2a).
   - **shipsafe `overseer/2026-06-08-p2b`** (a48ea9b, 1 commit): P2.1b ARIA roles validity
     (10th a11y check, WCAG 4.1.2 Level A). Merge p2a first; p2b then fast-forwards cleanly.
-    Demo `?demo=1` will show "info" for ARIA roles (no role attrs in the sample — correct).
-    Owner QA: paste a URL with `role="invalid"` or `role=""` → expect fail + fix guidance.
   - **shipsafe `overseer/2026-06-08-p2c`** (43b69f2, 1 commit): P2.1c tab-order heuristic
-    (11th a11y check, WCAG 2.4.3 Level A). Merge p2a → p2b → p2c in order (each is 1 commit).
-    Demo `?demo=1` will show "info" for tab order (sample HTML has no tabindex attrs — correct).
-    Owner QA: paste a URL with `tabindex="1"` or `tabindex="2"` → expect warn + fix guidance.
+    (11th a11y check, WCAG 2.4.3 Level A). Merge p2a → p2b → p2c in order.
   - **shipsafe `overseer/2026-06-08-p2d`** (a563c41, 1 commit): P2.1d video captions
     (12th a11y check, WCAG 1.2.2 Level A). Merge p2a → p2b → p2c → p2d in order.
-    Demo `?demo=1` will show "info" for video captions (sample HTML has no video — correct).
-    Owner QA: paste a URL with `<video>` without `<track kind="captions">` → expect fail + fix guidance.
   - **shipsafe `overseer/2026-06-08-p2e`** (9a36eb1, 1 commit): P2.1e language-of-parts
-    (13th a11y check, WCAG 3.1.2 Level AA). Merge after p2d. Demo `?demo=1` returns "info"
-    (sample HTML has no inline lang attrs — correct for a monolingual page).
-    Owner QA: paste a URL with `<span lang="">` → expect fail; `<span lang="fr">` → expect pass.
+    (13th a11y check, WCAG 3.1.2 Level AA). Merge after p2d.
   - **shipsafe `overseer/2026-06-08-p2f`** (1448a1c, 1 commit): P2.1f skip link resolves
-    (14th a11y check, WCAG 2.4.1 Level A). Merge p2a → p2b → p2c → p2d → p2e → p2f in order.
-    Demo `?demo=1` returns "info" for skip link (sample HTML has no skip link — correct for a
-    minimal AI-generated page). ShipSafe's own pages pass (href="#main" + id="main" present).
-    Owner QA: paste a URL with `<a class="skip" href="#nonexistent">` → expect fail + fix guidance.
+    (14th a11y check, WCAG 2.4.1 Level A). Merge p2a → ... → p2e → p2f in order.
   - **shipsafe `overseer/2026-06-08-p2g`** (357e7fe, 1 commit): P2.1g duplicate IDs
-    (15th a11y check, WCAG 4.1.1 Level A). Merge p2a → … → p2f → p2g in order (each is 1 commit).
-    Demo `?demo=1` returns "info" for duplicate IDs (sample HTML has no id attrs — correct).
-    ShipSafe's own pages pass (all IDs are unique). Owner QA: paste a URL with a duplicate id
-    attribute (e.g. two elements with `id="main"`) → expect fail + fix guidance + WCAG law badge.
+    (15th a11y check, WCAG 4.1.1 Level A). Merge p2a → ... → p2f → p2g in order.
+  - **shipsafe `overseer/2026-06-08-p2h`** (93df640, 1 commit): P2.1h ARIA required attributes
+    (16th a11y check, WCAG 4.1.2 Level A, `fail`). Checks 12 WAI-ARIA roles (checkbox, combobox,
+    heading, menuitemcheckbox, menuitemradio, meter, option, radio, scrollbar, slider, spinbutton,
+    switch) against their mandatory state/property attributes. Merge after p2g. app.js v=15.
+    Owner QA: paste a URL with `<div role="slider">` (no aria-valuenow) → expect fail; a page
+    using only semantic HTML → expect info. Demo `?demo=1` returns info (no such roles in sample).
   - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): rejected design, 6 behind main.
   - **marina `phase-3-golive`** (24 ahead vs main) + **`overseer/2026-06-07`** (1 commit, promo
     admin UI) — awaiting merge-to-main decision + Vercel admin-deploy fix.
   - **boots `overseer/2026-06-07`** (superseded by owner's own work) — close it.
-  - **apex `overseer/2026-06-07`** (fa1742b, coverage uplift): needs rebase onto current main
-    (feat/risk-hardening added ~33 commits) before it can merge cleanly.
-  - **apex `overseer/2026-06-08`** (tip `b202e1d`, F2.3 + walk-forward + docs): also needs rebase
-    onto current main before merging.
-  - **CLOSE apex `feat/risk-hardening`**: already merged to main (`c699015`).
-  - **apex `feat/research-buildout`** (22 ahead / ~55 behind after risk-hardening): heavily
+  - **apex `overseer/2026-06-07`** (fa1742b, coverage uplift): now ~46 commits behind main after
+    realignment commit — needs rebase before it can merge.
+  - **apex `overseer/2026-06-08`** (tip `b202e1d`, F2.3 + walk-forward + docs): also ~46 behind —
+    needs rebase before merging.
+  - **CLOSE apex `feat/risk-hardening`**: already merged to main.
+  - **apex `feat/research-buildout`** (22 ahead / ~55+ behind after realignment): heavily
     diverged; rebase/squash-merge or close decision needed.
   - **apex `feat/status-export`** (~1 ahead / ~55+ behind): almost certainly obsolete — close.
+- **Duke (verify deploy):** PRs #33 + #34 merged today — confirm Vercel picked up the deep-enriched
+  CRM fields (grade pills, deliverability badges, website quality chips, score_why breakdown).
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
   STRIPE_*, RESEND, VAPID, CRON_SECRET, GITHUB_APP_*, SENTRY_DSN).
 - **Duke (growth levers):** GBP as service-area business; real reviews + GOOGLE_REVIEW_URL;
@@ -350,7 +323,7 @@ Keep this current — it's the owner's return-from-away checklist.
   onto main (trivial sidebar conflict: combine Resources/Gift Cards/Promos nav items).
 - **Apex Quant:** let the 30-day paper gate run; flip to live only after Sharpe holds; decide
   whether to fund a survivorship-free dataset for the value edge (needed for F3.3 live sleeve).
-  Rebase + merge `overseer/2026-06-07` + `overseer/2026-06-08` (both need rebase onto new main).
+  Rebase + merge `overseer/2026-06-07` + `overseer/2026-06-08` (both now ~46 behind, need rebase).
   Close stale branches: `feat/risk-hardening` (merged), `feat/status-export`, review `feat/research-buildout`.
 - **ShipSafe:** P1.9 real domain (`shipsafe.app` or `copperbaylabs.com` subdomain); custom-domain
   GitHub Pages deploy. After domain: P4.2 launch (Product Hunt / Show HN) — only after Phase 1 clears.
