@@ -5,13 +5,13 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-07 (23:00 UTC). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run C). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
 ("Overseer — daily project coordinator"), 06:00 PDT / 13:00 UTC daily, Sonnet, clones all 5 active
 repos + master-prompts. It reconciles state, advances ONE project per run (rotating, UTC day-of-year
-mod 5), pushes work to `overseer/<UTC-date>` branches (NEVER main), and pushes its updated brief +
+mod 6), pushes work to `overseer/<UTC-date>` branches (NEVER main), and pushes its updated brief +
 `runs/overseer-<date>.md` report to this repo's main. Manage at
 https://claude.ai/code/routines/trig_014XPBhL62SX3vh5qei8oNPe (the overseer agent: this is YOU).
 
@@ -59,14 +59,14 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-07 23:00 UTC) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run C) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at 33b6564 (+1 vs prev: collapsible track accordion); **overseer/2026-06-07** (+2 commits: analytics + DailyChallenge P1.6b tests) awaiting owner merge; `feat/track-boss-fights` new |
-| **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at 7985e2e (synced); new prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
-| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at faf4835 (new: Resend email ingestion + CI/Playwright merged); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
-| **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at 6ac5ed2; `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 7d522e9; **overseer/2026-06-08** d6013a0 (+1: F2.3 daily heartbeat, 2517 tests) + **overseer/2026-06-07** fa1742b (+1: coverage uplift — 22 tests, backtester/base_strategy/config to 96-100%) both awaiting owner review; `feat/research-buildout` **22 ahead / 15 behind** (diverged); `feat/risk-hardening` + `feat/status-export` each **1 ahead / 40 behind** (likely obsolete) |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | live `dukotah.github.io/shipsafe/`; iterating ROADMAP.md Phase 1 (de-slop) |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at affb7296 (Skill Tree R2, career R2, /projects SSG, a11y, perf — June 7 23:42 UTC; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** 2fec499 now 4 commits **behind** main (owner surpassed it — may be superseded); `feat/track-boss-fights` open |
+| **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at 826c8f3b (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
+| **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at 1ff75fd9 (blog editorial redesign + form timeout fixes, June 7 23:02 UTC); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
+| **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at 6ac5ed2 (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at 3b9bd7c0 (GitHub Pages dashboard polish + ruff sort, June 7 23:52 UTC); F3.3 allocation engine ✅ DONE (in main); **overseer/2026-06-07** fa1742b (coverage uplift) + **overseer/2026-06-08** d6013a0 (F2.3 heartbeat) awaiting owner merge; `feat/research-buildout` diverged (22 ahead / 15 behind) |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at b2f2c707 (v1 + ROADMAP, June 7 23:54 UTC); **overseer/2026-06-08** b8b2535 (+1: P1.1+P1.2 brand identity + SVG icons) — awaiting screenshot-verify + owner merge |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -90,14 +90,14 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Where things live:** engine `src/store/useGameStore.ts`; curriculum data `src/lib/curriculum/`
   (register every new module in FOUR places: `index.ts`, `scripts/check-curriculum.ts` hand-list,
   `tracks.ts`, `paths.ts`); operating spine at root `VISION/ROADMAP/TASKS/PROGRESS/DECISIONS.md`.
-- **State:** huge surface shipped & live. 139 modules / 979 lessons / **400 unit tests** / 1747
-  curriculum tests. All 20 strategy-backlog items from `docs/STRATEGY-RESEARCH-2026-06.md` are
-  DONE (goal-gradient nudge, variable-reward loot, FSRS, retrieval practice, pair streaks, streak
-  decay, interleaving, league segmentation, XP weekends, two-sided referral, Cantrip Wrapped,
-  AI modules, boss battles, comparison pages, etc.). **overseer/2026-06-07** branch has +2 commits:
-  analytics instrumentation (lesson_started + streak_milestone) + DailyChallenge P1.6b component
-  tests. Awaiting owner merge. Phase 1 TASKS.md has 3 remaining `⬜` items (P1.2 bundle analyzer,
-  P1.5 XP anti-cheat, P1.7 loading/error state audit) — P1.6b NOW DONE.
+- **State:** huge surface shipped & live. 151 modules / 1039 lessons / **377 unit tests** /
+  1971 curriculum tests (June 7 2026). Latest additions to main: Skill Tree R2 (talent toasts +
+  first-visit walkthrough), career R2 (/career/resume + /career/mock-interview, Pro-gated),
+  /projects/[slug] SSG detail pages, a11y contrast fixes, first-load perf (2.6MB curriculum chunk
+  now only loads on /review, not all 34 routes; /learn 1.03MB→70KB). All 20 strategy-backlog items
+  from `docs/STRATEGY-RESEARCH-2026-06.md` are DONE. `overseer/2026-06-07` branch (+2: analytics
+  instrumentation + DailyChallenge P1.6b tests) is now 4 commits behind main — may be superseded
+  by owner's own work; owner should review.
 - **Gotchas:** `check-curriculum.ts` runs starter stubs AND solutions with NO timeout — an
   unbounded loop in a stub or a drain-loop test HANGS forever. JS runner = Web Worker (no
   window/localStorage). Cloud agents push to `origin/main` AND open PRs — fetch+rebase before push.
@@ -106,8 +106,8 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Verify:** `npx tsc --noEmit` · `npm run check` · `npm test` · `npm run build`.
 - **Next buildable:** P1.7 — verify loading/empty/error states on primary routes (dashboard, lesson,
   learn, leaderboard, account, teams) — find routes that don't handle these states and add guards.
-  P1.2 — add @next/bundle-analyzer, find the real First-Load drivers (suspected: framer-motion +
-  supabase-js + react-markdown). trial-expiration urgency emails (blocked: needs RESEND secret).
+  P1.2 (bundle analyzer + first-load investigation) may already be done per latest commits — verify TASKS.md.
+  trial-expiration urgency emails (blocked: needs RESEND secret).
 
 ### 🟢 Websites — outreach demo-site factory (Astro)
 - **What:** mass-generates per-business demo sites at `/p/<slug>` (one Vercel deploy hosts all
@@ -115,15 +115,17 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **State:** v2 design system live; deep anti-"AI-slop" framework (per-business fonts/palettes/
   shape, OKLab color, section-variant pool, real-photo scraping + Sharp photo-quality scorer,
   astro:assets image pipeline, vision-QA harness, outreach funnel w/ claim banner + noindex gate).
-  `main` is **4 ahead / 1 behind** origin — owner has parked the deploy.
+  Latest: 4 fresh real-scrape demos live on main (Golden Gear Automotive, Joon Hair, Petaluma Pie
+  Company, Brewsters Beer Garden — screenshot-verified, audit clean). Mobile header drawer +
+  conversion-zone footer shipped. Brand design tokens (--brand-tint/--surface-3), grain/noise
+  texture overlay, font preload, schema compliance, CRO (post-testimonials CTA inject), layout
+  bugfixes all on main. Prospect branches `driftwood-cowgirl-boutique` + `pecota-vineyard` still open.
 - **Gotchas:** quality must be checked by **screenshot** (headless Chrome `--headless=new
   --screenshot` vs `npm run preview`, auto-picks free port ~4322). Undefined `var(--token)` =
   silent invisible text, build stays green. A shared image component breaks parents' scoped `img`
   CSS — `SiteImage` owns fill/zoom. Build/preview from `sites/demo-gallery`. DON'T re-scrape
   curated grade-A demos to "enrich" — it regresses heroes (learned the hard way).
 - **Owner-action:** set `SITE_URL`/`GALLERY_BASE_URL` on Vercel; push/deploy decision.
-- **Recently built (local, UNPUSHED):** new `FaqAccordion.astro` FAQ section variant (commit
-  `c143d77`, build + audit clean; visual not yet eyeballed) — 2026-06-07, awaiting batch push.
 - **Next buildable:** run a fresh CSV batch through the upgraded pipeline (roster ~10); mine
   CodeStitch for MORE section variants; before/after slider; OKLab hue math.
 
@@ -131,23 +133,22 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
 - **Stack:** Next.js 16 + Tailwind v4. Sonoma County web/IT/cyber/AI for small businesses.
   `@/config/site` + `@/config/pricing` are single sources of truth. Has a full CRM (`/crm`,
   Upstash Redis, db.ts), 30+ blog posts, large service×city page matrix, 4 free-tool lead magnets.
-- **State:** `main` at faf4835 — Resend email-event ingestion + drip-sequence cron + CI pipeline
-  + Playwright E2E smoke suite now merged to origin/main. Service×city matrix complete. Lead
-  capture fully wired. New in-flight branches: `feat/hardening-sprint1`, `feat/website-links-to-crm`.
+- **State:** `main` at 1ff75fd9 — blog editorial redesign (featured card + category filter + grid +
+  shared ArticleHeader with contrast-fixed byline/date), form timeout fixes (withTimeout helper,
+  15s client AbortSignal, /contact 308 redirect), Resend email-event ingestion + drip cron, CI
+  pipeline + Playwright E2E smoke suite all on main. Service×city matrix complete. Lead capture
+  fully wired. In-flight: `feat/hardening-sprint1`, `feat/website-links-to-crm`.
 - **Gotchas:** ⚠️ historically the local checkout is a stale branch — **always fetch origin/main
-  first**. One CRM only now (the old power-dialer was deleted/reconciled). Lint flags `Date.now()`
-  in component scope — use a module-level helper.
+  first**. One CRM only now. Lint flags `Date.now()` in component scope — use a module-level helper.
 - **Owner-action (the real growth levers — only the owner can do these):** Google Business Profile
   as a service-area business; collect real reviews + set `GOOGLE_REVIEW_URL`; founder headshot +
   LinkedIn URL; Vercel env (`CRM_ADMIN_TOKEN`, `GALLERY_BASE_URL`, `GITHUB_WEBHOOK_SECRET`,
   `OUTREACH_DOMAIN_VERIFIED_DATE`, flip on Web Analytics); verify Resend sending domain before any
-  cold email.
+  cold email; set `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` + `RESEND_API_KEY` in
+  Vercel prod (root cause of the form hang the timeout fix works around).
 - **Verify:** `tsc` + `eslint` + `vitest` (~132 tests) + `next build`.
-- **Recently built (on main):** Resend email ingestion + drip cron (merged PR #32) + CI/Playwright
-  E2E smoke suite (merged PR #31). Branches `feat/hardening-sprint1` + `feat/website-links-to-crm`
-  need review.
-- **Next buildable (no owner dep):** ROADMAP "Next 100" leftovers — inline estimate widget,
-  comparison posts, dialer shortcuts, Cmd-K, image-loading audit.
+- **Next buildable (no owner dep):** ROADMAP "Next 100" — inline estimate widget,
+  comparison posts, dialer shortcuts, Cmd-K palette, image-loading audit.
 
 ### 🟢 Marina booking platform — multi-tenant SaaS (beat Singenuity)
 - **Stack:** Turborepo/pnpm + Next 14 (web+admin) + Node/Hono API + Postgres/Prisma + Square + Clerk.
@@ -169,27 +170,29 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   phase-3-golive + overseer/2026-06-07 (trivial sidebar conflict — combine Resources/Gift Cards/Promos).
 - **Next buildable:** wizard→storefront click-through (OnboardingWizard.tsx is in phase-3-golive
   diff — do after that branch merges); web account slot-picker UI for 2.1 reschedule (also in that diff).
-  ⚠️ Both items are BLOCKED on `phase-3-golive` merge (owner action). Next run should skip to apex-quant
-  if marina remains first in rotation.
+  ⚠️ Both items are BLOCKED on `phase-3-golive` merge (owner action). Skip to apex/shipsafe if marina is first in rotation.
 
 ### 🟢 Apex Quant — algo-trading framework (Python)
 - **What:** event-driven, asset-agnostic trading framework with a 7-gate validation Gauntlet.
   Strategies emit `SignalEvent` only; `RiskManager` is the sole `OrderEvent` producer. Its own
   `CLAUDE.md/DECISIONS.md/ROADMAP.md/SESSION_PLAYBOOK.md` are the source of truth — **read first**.
-- **State:** build COMPLETE (Phases 1–6 + F1 + F2). 2517 tests on main, CI green. The
-  **multi-asset trend strategy is DEPLOYED LIVE ON PAPER** via GitHub Actions weekday cron.
-  **F2.3 DONE** (overseer/2026-06-08): daily heartbeat alert. **Coverage uplift DONE**
-  (overseer/2026-06-07): 22 new tests — backtester 62%→100%, config 79%→100%,
-  base_strategy 78%→96% (line 133 is structurally dead code). All F2 phases complete.
-  Remaining: F3.3 (live allocation engine) gated on W8 (needs PAID survivorship-free data).
+- **State:** build COMPLETE (Phases 1–6 + F1 + F2 + F3). F3.3 allocation engine ✅ DONE — owner
+  built `apex/risk/capital_allocation.py` `CapitalAllocator`, wired into `run_once._submit_orders`,
+  gated behind `AppConfig.allocation` (default None = OFF, safe until W8). `Bar.__post_init__`
+  invariant ✅ DONE (in models.py). Coverage uplift ✅ DONE (`overseer/2026-06-07`: backtester
+  62→100%, config 79→100%, base_strategy 78→96%). F2.3 heartbeat ✅ DONE (`overseer/2026-06-08`).
+  **Multi-asset trend strategy LIVE ON PAPER** via GitHub Actions. Owner also added a GitHub Pages
+  progress dashboard (`build_page` card UI). Main now at `3b9bd7c0`.
+  **overseer/2026-06-07** (coverage) + **overseer/2026-06-08** (F2.3) both awaiting owner merge.
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
-  flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock W8/F3.3.
-  Merge `overseer/2026-06-07` (coverage) + `overseer/2026-06-08` (F2.3) when convenient.
-- **Next buildable:** F3.3 — live multi-strategy allocation engine (20% value / 80% trend) — BUILD
-  in backtest mode only, config-gated off until W8 clears. Or: Gate-3 walk-forward "efficiency"
-  metric investigation (reports anomalous values, likely divide-by-near-zero).
+  flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock W8/F3.3
+  live sleeve. Merge `overseer/2026-06-07` + `overseer/2026-06-08` when convenient.
+- **Next buildable:** Gate-3 walk-forward "efficiency" metric investigation (reports anomalous
+  values e.g. 66, 397 — likely divide-by-near-zero in a window; `apex/validation/walk_forward.py`).
+  OR: local dev parity (`make check` Makefile so `ruff check + ruff format --check + pytest` runs
+  in one command, matching CI). OR: README quickstart for a cold-start operator.
 - **Sibling:** `apex-trader` (private Next.js control surface) is a separate repo.
 
 ### 🟢 ShipSafe — Copper Bay Labs product #1 (from the forge factory)
@@ -199,22 +202,27 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   it grows its own brand/audience + a self-serve Pro tier; the agency benefits later via a one-way
   lead bridge.
 - **The mandate:** make it NOT look AI-built — credibility is the product. Its own roadmap
-  (`~/shipsafe/ROADMAP.md`) is the source of truth: Phase 1 = de-slop (brand identity, custom SVG
-  icons not emoji, report redesign, human copy, the tool passing its OWN a11y checks at AAA, trust
-  pages, real domain). Phases 2–4 = depth / monetize / distribute. Work phases top-down; do NOT
-  launch (P4) before Phase 1 clears.
-- **Verify method:** SCREENSHOT every UI change in headless Chrome (never trust build-success — same
-  anti-slop rule as websites), AND the tool must keep passing its own accessibility engine.
+  (`~/shipsafe/ROADMAP.md`) is the source of truth: Phase 1 = de-slop. Work phases top-down.
+- **State:** v1 launched June 7. ROADMAP and de-slop plan written. **P1.1 + P1.2 DONE on
+  `overseer/2026-06-08`** (commit b8b2535): brand identity (maritime navy #0d4f6e, Plus Jakarta
+  Sans via Bunny Fonts, two-tone ShipSafe wordmark) + full SVG icon set (4 Lucide-style icons
+  replacing all emoji). Self-exemplary: privacy + contact checks now pass on ShipSafe's own scan.
+  **Screenshot verification NOT done by agent** (cloud env lacks headless Chrome) — owner must
+  verify visually before merging to main.
+- **Verify method:** SCREENSHOT every UI change in headless Chrome (never trust build-success),
+  AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
-  branches as usual; merging to main to deploy is low-risk, owner's call.
-- **Next buildable:** ROADMAP Phase 1 items, top-down (P1.1 brand identity → P1.2 icons → P1.3 report
-  redesign → P1.5 self-exemplary a11y → P1.6 copy → P1.7 trust pages → P1.8 polish).
+  branches; merging to main to deploy is low-risk, owner's call.
+- **Next buildable:** P1.3 report redesign (severity hierarchy, letter grade A–F, calm-but-serious
+  visual tone; make the report the thing people screenshot). **After** owner merges P1.1+P1.2.
+  Also remaining in P1: P1.5 (self-exemplary a11y — partially addressed; still needs ToS + a11y
+  statement), P1.6 (human copy pass), P1.7 (trust depth: /methodology + /about + limitations).
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
   Local `main` is **24 commits BEHIND origin** (stale) + 3 dirty. The duke CRM reads a *different*
   branch's export (`claude/lead-data-sourcing`). Sync local before working here.
-- **master-prompts** — curated prompt library for Claude Code / agents. `main` **2 unpushed**, clean.
+- **master-prompts** — curated prompt library for Claude Code / agents. `main` updated each run.
   Low-risk, no deploy.
 - **apex-trader** (private) — dashboards/auth/strategy-risk visibility over apex-quant.
 
@@ -253,21 +261,26 @@ merge — agent-written content is often CI-untested.
 
 Keep this current — it's the owner's return-from-away checklist.
 
-- **Deploy / merge decisions:** marina `phase-3-golive` (24 ahead vs main) + `overseer/2026-06-07`
-  (1 commit, promo admin UI) on `origin` (preview only) — awaiting your merge-to-main decision +
-  Vercel admin-deploy fix. **boots `overseer/2026-06-07`** (+2 commits: analytics instrumentation
-  + DailyChallenge component tests, 400 tests total) — safe to merge any time. apex
-  `feat/research-buildout` (20 ahead of main), `feat/risk-hardening` (1 ahead / 40 behind, likely
-  obsolete), `feat/status-export` (same) — review and merge or close.
+- **Deploy / merge decisions:**
+  - **shipsafe `overseer/2026-06-08`** (b8b2535): brand identity + SVG icons — **screenshot-verify** before merging (ROADMAP requirement). GitHub Pages deploy is free, low-risk.
+  - **marina `phase-3-golive`** (24 ahead vs main) + **`overseer/2026-06-07`** (1 commit, promo admin UI) — awaiting merge-to-main decision + Vercel admin-deploy fix.
+  - **boots `overseer/2026-06-07`** (2fec499, 4 commits BEHIND current main): owner's own work has surpassed this branch. Review whether analytics instrumentation + DailyChallenge tests are still needed or already covered.
+  - **apex `overseer/2026-06-07`** (fa1742b, coverage uplift) + **`overseer/2026-06-08`** (d6013a0, F2.3 heartbeat): safe to merge any time.
+  - **apex `feat/research-buildout`** (22 ahead / 15 behind): diverged; rebase/squash-merge decision needed.
+  - **apex `feat/risk-hardening`** + **`feat/status-export`** (each 1 ahead / 40 behind): almost certainly obsolete — close these branches.
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
   STRIPE_*, RESEND, VAPID, CRON_SECRET, GITHUB_APP_*, SENTRY_DSN).
 - **Duke (growth levers):** GBP as service-area business; real reviews + GOOGLE_REVIEW_URL;
   founder headshot + LinkedIn; Vercel env (CRM_ADMIN_TOKEN, GALLERY_BASE_URL,
-  GITHUB_WEBHOOK_SECRET, OUTREACH_DOMAIN_VERIFIED_DATE, Web Analytics); verify Resend domain.
+  GITHUB_WEBHOOK_SECRET, OUTREACH_DOMAIN_VERIFIED_DATE, Web Analytics); **set UPSTASH_REDIS_REST_URL +
+  TOKEN + RESEND_API_KEY in Vercel prod** (root cause of form hangs — the withTimeout fix degrades
+  gracefully but the real fix is the env vars); verify Resend domain.
 - **Websites:** set SITE_URL / GALLERY_BASE_URL on Vercel; decide on deploy; run a fresh CSV batch.
 - **Marina:** Clerk SECRET key; Stripe test keys (switched from Square — D-013); diagnose marina-admin
   Vercel deploy failure; per-tenant billing; legal/ToS. Merge `phase-3-golive` + `overseer/2026-06-07`
   onto main (trivial sidebar conflict: combine Resources/Gift Cards/Promos nav items).
 - **Apex Quant:** let the 30-day paper gate run; flip to live only after Sharpe holds; decide
-  whether to fund a survivorship-free dataset for the value edge.
+  whether to fund a survivorship-free dataset for the value edge (needed for F3.3 live sleeve).
+- **ShipSafe:** P1.9 real domain (`shipsafe.app` or `copperbaylabs.com` subdomain); custom-domain
+  GitHub Pages deploy. After domain: P4.2 launch (Product Hunt / Show HN) — only after Phase 1 clears.
 - **Sonoma scraper:** local main is 24 behind origin — pull/sync.
