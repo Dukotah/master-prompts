@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run D). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-08 (Run F). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -34,7 +34,7 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
    is safe (preview deploy only) — use that to "save without deploying."
 2. **Agent budget is tight** — owner is on a **$100/mo plan**. Keep multi-agent fan-outs lean:
    prefer Sonnet/Haiku, batch files per agent, ~5–12 agents not 30–80. Disjoint file ownership;
-   integrate shared files (store/nav/index/registries) by hand to avoid parallel-edit conflicts.
+   integrate shared files (store/nav/index/registries) yourself.
 3. **Machine is RAM-constrained** (~7.35 GB, Win11 Dell laptop, has OOM-killed terminals).
    Run builds/tests serially, not in parallel. If `npm run build` flakes with OOM, `rm -rf .next`
    and retry. Don't launch many heavy local processes at once.
@@ -59,13 +59,13 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 ## 1. Project portfolio at a glance
 
-| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run D) |
+| Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run F) |
 |---|---|---|---|---|---|
 | **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `74e44106` (June 8 00:56 UTC; owner SEO push: 60 blog posts, FAQPage/ItemList JSON-LD schema, /projects/[slug] noindex bug fixed, sitemap expanded; 151 modules/1039 lessons/377 unit tests); **overseer/2026-06-07** 2fec499 now 4 commits **behind** main — superseded by owner; `feat/track-boss-fights` open |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `1ff75fd9` (blog editorial redesign + form timeout fixes, June 7 23:02 UTC); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `2811d0c0` (June 8 01:17 UTC; interactive web app — run Gauntlet from browser, +5 tests, now 2,500+ tests total); **overseer/2026-06-07** fa1742b (coverage uplift); **overseer/2026-06-08** tip `2d9f465` (5 commits: F2.3 + walk-forward + README stale-fix + ROADMAP IMPROVEMENTS close) — both awaiting owner merge |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `2811d0c0` (June 8 01:17 UTC; interactive web app — run Gauntlet from browser, +5 tests, now 2,500+ tests total); **overseer/2026-06-07** fa1742b (coverage uplift); **overseer/2026-06-08** tip `b202e1d` (6 commits: F2.3 + walk-forward + README stale-fix + ROADMAP IMPROVEMENTS close + portfolio Decimal/float boundary comment) — both awaiting owner merge |
 | **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `fba30411` (June 8 00:54 UTC; owner surpassed overseer branch — cache-bust, mobile height fix, non-sticky header, deep-linkable scans, OG share, 404/robots/sitemap, touch icon, `?demo=1`); **overseer/2026-06-08** b8b2535 (P1.1+P1.2 brand + SVG icons — ≥5 commits BEHIND main, rebase needed before merge) |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
@@ -176,22 +176,21 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   DONE. Coverage uplift ✅ DONE (overseer/2026-06-07, awaiting merge). F2.3 heartbeat ✅ DONE.
   Gate-3 walk-forward fix ✅ DONE. Interactive web app (`webapp.py`) ✅ DONE — run Gauntlet from
   browser. **Main at `2811d0c0`** (June 8 01:17 UTC, 2,500+ tests). README fixed (stale 414→2,500+,
-  webapp documented), ROADMAP IMPROVEMENTS closed (3 items) — both on overseer/2026-06-08 (tip `2d9f465`).
+  webapp documented), ROADMAP IMPROVEMENTS closed (3 items) — both on overseer/2026-06-08.
+  Portfolio Decimal/float boundary comment ✅ DONE (Run F, commit `b202e1d`).
   **Multi-asset trend strategy LIVE ON PAPER** via GitHub Actions.
-  **overseer/2026-06-07** (fa1742b, coverage uplift) + **overseer/2026-06-08** (5 commits: F2.3 +
-  walk-forward + README + ROADMAP docs) both awaiting owner merge; owner needs to rebase overseer/2026-06-08
-  onto main (4 webapp commits ahead on main) before merging.
+  **overseer/2026-06-07** (fa1742b, coverage uplift) + **overseer/2026-06-08** (6 commits: F2.3 +
+  walk-forward + README + ROADMAP docs + Decimal/float boundary comment) both awaiting owner merge;
+  owner needs to rebase overseer/2026-06-08 onto main (4 webapp commits ahead on main) before merging.
 - **Workflow rule:** normally **one module per session, tested, then stop**; built files are FROZEN.
   Run `ruff format --check` locally before pushing (CI enforces it).
 - **Owner-action / time-gated:** run out the 30-day paper gate (`python -m scripts.report`); only
   flip `APEX_MODE=live` after Sharpe holds. Decide on paid delisted-data source to unlock F3.3
   live sleeve. Merge `overseer/2026-06-07` + `overseer/2026-06-08` when convenient (rebase needed
   for the latter before it can land cleanly).
-- **Next buildable:** Decimal/float boundary documentation (one inline comment in
-  `apex/risk/portfolio.py` noting the intentional Decimal/float boundary for the realized-vol path
-  — prevents future "fix" into a bug). OR wait for coverage uplift merge and then probe remaining
-  F1 research items.
-- **Sibling:** `apex-trader` (private Next.js control surface) is a separate repo.
+- **Next buildable:** probe remaining F1 research items or incremental test gap fills on any module
+  below 85% branch coverage — once `overseer/2026-06-07` coverage uplift merges. The overseer
+  branch queue is getting long; future apex runs should hold until owner merges current branches.
 
 ### 🟢 ShipSafe — Copper Bay Labs product #1 (from the forge factory)
 - **What:** standalone static web app (vanilla HTML/CSS/JS, GitHub Pages, $0). Paste a URL → ~20
@@ -264,7 +263,7 @@ Keep this current — it's the owner's return-from-away checklist.
   - **marina `phase-3-golive`** (24 ahead vs main) + **`overseer/2026-06-07`** (1 commit, promo admin UI) — awaiting merge-to-main decision + Vercel admin-deploy fix.
   - **boots `overseer/2026-06-07`** (2fec499, 4 commits BEHIND current main): owner's own work has surpassed this branch — close it.
   - **apex `overseer/2026-06-07`** (fa1742b, coverage uplift): safe to merge any time (cherry-pick or rebase).
-  - **apex `overseer/2026-06-08`** (tip `2d9f465`, 5 commits: F2.3 + walk-forward + README + ROADMAP docs): safe to merge but **requires rebase** onto main first (main has 4 webapp commits ahead that don't conflict with README/ROADMAP).
+  - **apex `overseer/2026-06-08`** (tip `b202e1d`, 6 commits: F2.3 + walk-forward + README + ROADMAP docs + portfolio Decimal/float boundary comment): safe to merge but **requires rebase** onto main first (main has 4 webapp commits ahead that don't conflict with these changes).
   - **apex `feat/research-buildout`** (22 ahead / 15 behind): diverged; rebase/squash-merge decision needed.
   - **apex `feat/risk-hardening`** + **`feat/status-export`** (each 1 ahead / ~40 behind): almost certainly obsolete — close these branches.
 - **Boots:** apply Supabase migrations 0005/0006/0007 live; set Vercel secrets (SERVICE_ROLE,
