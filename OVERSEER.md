@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-09 (Run A — 1st run this date). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-09 (Run B — 2nd run this date). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -215,9 +215,10 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   - **p2g** (357e7fe): 15th a11y check — "Duplicate IDs" (WCAG 4.1.1, `fail`).
   - **p2h** (93df640, Run P): 16th a11y check — "ARIA required attributes" (WCAG 4.1.2, `fail`).
     Checks 12 roles against their WAI-ARIA 1.2 required state/property attributes. app.js v=15.
-  - **overseer/2026-06-09** (7c39412 + 3f92ef0, Runs A-pre + A): two commits on one branch:
+  - **overseer/2026-06-09** (7c39412 + 3f92ef0 + 5a65686, Runs A-pre + A + B): three commits on one branch:
     - **P2.1i** (7c39412): 17th a11y check — "Autocomplete on personal-data fields" (WCAG 1.3.5, `warn`). app.js v=16.
     - **P2.1j** (3f92ef0): 18th a11y check — "Frames have accessible names" (WCAG 4.1.2, `fail`). Checks `<iframe>` elements for `title` attribute; demo gets an untitled Google Maps iframe → shows fail. app.js v=17.
+    - **P2.1k** (5a65686): 19th a11y check — "Viewport zoom restrictions" (WCAG 1.4.4, `warn`). Parses `<meta name="viewport">` for `user-scalable=no` or `maximum-scale≤1`; demo updated with `user-scalable=no` viewport → shows warn. app.js v=18.
   Old branches superseded — all safe to close:
   - `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy done by owner's sweep.
   - `overseer/2026-06-08-p1.5` (e4bacc2): owner did P1.5 without --muted-2 fix (now in p2a).
@@ -226,10 +227,13 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main is low-risk, owner's call.
-- **Next buildable:** P2.1k — Viewport zoom restrictions (WCAG 1.4.4 Resize Text, Level AA, `warn`).
-  Detects `<meta name="viewport">` with `user-scalable=no` or `maximum-scale` restricted to ≤ 1,
-  which prevents pinch-to-zoom on mobile — a direct barrier for low-vision users. Branch from
-  overseer/2026-06-09 (or main after the pending chain merges).
+- **Next buildable:** P2.1l — Color contrast (WCAG 1.4.3 Level AA, `warn`). Currently listed as
+  a limitation ("color contrast is not checked"). A heuristic approach: extract inline `color` and
+  `background-color` style attributes and check contrast ratio via WCAG formula. Cannot handle
+  CSS classes/external stylesheets from source alone — would be heuristic only on inline styles.
+  Alternatively: P2.1m — Touch target size (WCAG 2.5.5 Level AAA, `warn`) — check for interactive
+  elements that appear small based on inline `width`/`height` style attributes. Branch from
+  overseer/2026-06-09 or new date branch.
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -296,10 +300,11 @@ Keep this current — it's the owner's return-from-away checklist.
     switch) against their mandatory state/property attributes. Merge after p2g. app.js v=15.
     Owner QA: paste a URL with `<div role="slider">` (no aria-valuenow) → expect fail; a page
     using only semantic HTML → expect info. Demo `?demo=1` returns info (no such roles in sample).
-  - **shipsafe `overseer/2026-06-09`** (2 commits — merge after p2h): P2.1i + P2.1j.
+  - **shipsafe `overseer/2026-06-09`** (3 commits — merge after p2h): P2.1i + P2.1j + P2.1k.
     - **P2.1i** (7c39412): Autocomplete on personal-data fields (17th check, WCAG 1.3.5 AA, `warn`). Demo has email input w/ no autocomplete → shows warn.
     - **P2.1j** (3f92ef0): Frames have accessible names (18th check, WCAG 4.1.2 Level A, `fail`). Checks `<iframe>` for `title`; demo includes untitled Google Maps iframe → shows fail. ShipSafe own pages have no `<iframe>` elements → info (no self-fail). app.js v=17.
-    Owner QA: paste a URL containing `<iframe src="https://maps.google.com/...">` (no title) → expect fail. A static page with no iframes → expect info.
+    - **P2.1k** (5a65686): Viewport zoom restrictions (19th check, WCAG 1.4.4 Level AA, `warn`). Parses viewport meta for `user-scalable=no` or `maximum-scale≤1`. Demo updated with `user-scalable=no` → shows warn for this check + Mobile viewport now passes (viewport meta present). ShipSafe own pages use safe defaults → pass. app.js v=18.
+    Owner QA: paste a URL containing `<iframe src="https://maps.google.com/...">` (no title) → expect fail on P2.1j. A site with `<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">` → expect warn on P2.1k. A site with `content="width=device-width, initial-scale=1"` → expect pass on P2.1k.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): rejected design, 6 behind main.
