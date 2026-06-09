@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-08 (Run P — 16th run this date). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-09 (Run A — 1st run this date). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -61,12 +61,12 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 
 | Project | Repo | Local | Tier | Deploy on push? | Live git state (2026-06-08 Run P) |
 |---|---|---|---|---|---|
-| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `4ae73a3c` (June 8 21:11 UTC — feat/catalog-pricing-dashboard merged PR #23); `feat/track-boss-fights` open |
+| **Boots / Cantrip** | `Dukotah/boots` | `~/boots` | 🟢 Active flagship | Yes (main) | `main` at `4ae73a3c` (June 8 21:11 UTC — feat/catalog-pricing-dashboard merged PR #23); `feat/track-boss-fights` open; `overseer/2026-06-07` superseded — close |
 | **Websites factory** | `Dukotah/Websites` | `~/websites` | 🟢 Active | Yes (main) | `main` at `826c8f3b` (June 7 23:37 UTC; 4 fresh real-scrape demos); prospect branches: `driftwood-cowgirl-boutique`, `pecota-vineyard` |
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `7c3a0412` (June 8 21:21 UTC — PR #34 website-signal block + PR #33 deep-enriched lead data); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
-| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `f752197f` (June 8 21:28 UTC — cron state update); `cf12b22a` (21:27 UTC — realignment: coverage floor 70→90, watchdog, preflight self-heal, 3155 tests, 94.53% coverage); **overseer/2026-06-07** fa1742b + **overseer/2026-06-08** b202e1d both now ~46+ behind, need rebase |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); chain p2a→p2h all pending owner merge (each 1 commit, linear); **overseer/2026-06-08-p2h** `93df640` (P2.1h ARIA required attributes — Run P); old p1.3/p1.5/2026-06-08 branches superseded — close |
+| **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `f752197f` (June 8 21:28 UTC — cron state update); `overseer/2026-06-07` **1 ahead** (needs rebase ~46 behind); `overseer/2026-06-08` **5 ahead** (needs rebase); `feat/risk-hardening` 1 ahead (should be merged — verify); `feat/research-buildout` 0 ahead (diverged/absorbed); `feat/status-export` 1 ahead (obsolete) |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); chain p2a→p2h pending owner merge; **overseer/2026-06-09** `3f92ef0` (P2.1i autocomplete + P2.1j iframe title — 2 commits — Run A); old p1.3/p1.5/2026-06-08 branches superseded — close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -215,6 +215,9 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   - **p2g** (357e7fe): 15th a11y check — "Duplicate IDs" (WCAG 4.1.1, `fail`).
   - **p2h** (93df640, Run P): 16th a11y check — "ARIA required attributes" (WCAG 4.1.2, `fail`).
     Checks 12 roles against their WAI-ARIA 1.2 required state/property attributes. app.js v=15.
+  - **overseer/2026-06-09** (7c39412 + 3f92ef0, Runs A-pre + A): two commits on one branch:
+    - **P2.1i** (7c39412): 17th a11y check — "Autocomplete on personal-data fields" (WCAG 1.3.5, `warn`). app.js v=16.
+    - **P2.1j** (3f92ef0): 18th a11y check — "Frames have accessible names" (WCAG 4.1.2, `fail`). Checks `<iframe>` elements for `title` attribute; demo gets an untitled Google Maps iframe → shows fail. app.js v=17.
   Old branches superseded — all safe to close:
   - `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy done by owner's sweep.
   - `overseer/2026-06-08-p1.5` (e4bacc2): owner did P1.5 without --muted-2 fix (now in p2a).
@@ -223,11 +226,10 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main is low-risk, owner's call.
-- **Next buildable:** P2.1i — Autocomplete on personal-data fields (WCAG 1.3.5 Identify Input
-  Purpose, Level AA, `warn`). Detects `<input>` elements collecting personal information (type=email,
-  tel, password, or name/address/zip/phone in placeholder/name attr) that lack an `autocomplete`
-  attribute. Missing autocomplete prevents password managers and browser autofill — a significant
-  barrier for users with cognitive or motor disabilities. Branch from p2h.
+- **Next buildable:** P2.1k — Viewport zoom restrictions (WCAG 1.4.4 Resize Text, Level AA, `warn`).
+  Detects `<meta name="viewport">` with `user-scalable=no` or `maximum-scale` restricted to ≤ 1,
+  which prevents pinch-to-zoom on mobile — a direct barrier for low-vision users. Branch from
+  overseer/2026-06-09 (or main after the pending chain merges).
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -294,6 +296,10 @@ Keep this current — it's the owner's return-from-away checklist.
     switch) against their mandatory state/property attributes. Merge after p2g. app.js v=15.
     Owner QA: paste a URL with `<div role="slider">` (no aria-valuenow) → expect fail; a page
     using only semantic HTML → expect info. Demo `?demo=1` returns info (no such roles in sample).
+  - **shipsafe `overseer/2026-06-09`** (2 commits — merge after p2h): P2.1i + P2.1j.
+    - **P2.1i** (7c39412): Autocomplete on personal-data fields (17th check, WCAG 1.3.5 AA, `warn`). Demo has email input w/ no autocomplete → shows warn.
+    - **P2.1j** (3f92ef0): Frames have accessible names (18th check, WCAG 4.1.2 Level A, `fail`). Checks `<iframe>` for `title`; demo includes untitled Google Maps iframe → shows fail. ShipSafe own pages have no `<iframe>` elements → info (no self-fail). app.js v=17.
+    Owner QA: paste a URL containing `<iframe src="https://maps.google.com/...">` (no title) → expect fail. A static page with no iframes → expect info.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): rejected design, 6 behind main.
