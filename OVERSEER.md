@@ -5,7 +5,7 @@
 across all projects while the owner is away. Update the per-project STATE lines whenever you
 (or a delegated agent) finish a chunk of work.
 
-> Last reconciled: 2026-06-09 (Run B — 2nd run this date). Verify git state before acting — these notes go stale fast
+> Last reconciled: 2026-06-09 (Run C — 3rd run this date). Verify git state before acting — these notes go stale fast
 > because cloud agents push to `origin/main` mid-session on several repos.
 
 **Automation:** a daily remote routine runs this brief. Routine `trig_014XPBhL62SX3vh5qei8oNPe`
@@ -66,7 +66,7 @@ These are hard-won house rules. Violating them costs the owner money or breaks p
 | **Duke / Copper Bay Tech** | `Dukotah/Duke` | `~/duke` | 🟢 Active | Yes (main) | `main` at `7c3a0412` (June 8 21:21 UTC — PR #34 website-signal block + PR #33 deep-enriched lead data); `feat/hardening-sprint1`, `feat/website-links-to-crm` pending review |
 | **Marina booking SaaS** | `Dukotah/marina-booking-platform` | `~/marina-booking-platform` | 🟢 Active | Yes (main) | `main` at `6ac5ed2` (unchanged); `phase-3-golive` **24 ahead**; `overseer/2026-06-07` **1 ahead** (promo admin page); `feat/finish-mvp-buildable` **6 ahead** — owner merge decision needed |
 | **Apex Quant** | `Dukotah/apex-quant` | `~/apex-quant` | 🟢 Active | No (CI cron only) | `main` at `f752197f` (June 8 21:28 UTC — cron state update); `overseer/2026-06-07` **1 ahead** (needs rebase ~46 behind); `overseer/2026-06-08` **5 ahead** (needs rebase); `feat/risk-hardening` 1 ahead (should be merged — verify); `feat/research-buildout` 0 ahead (diverged/absorbed); `feat/status-export` 1 ahead (obsolete) |
-| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); chain p2a→p2h pending owner merge; **overseer/2026-06-09** `3f92ef0` (P2.1i autocomplete + P2.1j iframe title — 2 commits — Run A); old p1.3/p1.5/2026-06-08 branches superseded — close |
+| **ShipSafe** | `Dukotah/shipsafe` | `~/shipsafe` | 🟢 Active (Copper Bay Labs) | GitHub Pages (free, on main) | `main` at `a86dff79` (June 8 05:31 UTC); chain p2a→p2h pending owner merge; **overseer/2026-06-09** `f90a158` (4 commits: P2.1i autocomplete + P2.1j iframe title + P2.1k viewport zoom + **P2.1l color contrast** — Run C); old p1.3/p1.5/2026-06-08 branches superseded — close |
 | **Sonoma lead scraper** | `Dukotah/sonoma-lead-scraper` | `~/sonoma-lead-scraper` | 🟡 Supporting | No | `main` stale — 24 behind origin, 3 dirty |
 | **Master prompts** | `Dukotah/master-prompts` | `~/master-prompts` | 🟡 Supporting | No | `main` — updated this run |
 | **Apex Trader** | `Dukotah/apex-trader` (private) | — | 🟡 Supporting | Yes | Next.js control surface for apex-quant |
@@ -215,10 +215,11 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   - **p2g** (357e7fe): 15th a11y check — "Duplicate IDs" (WCAG 4.1.1, `fail`).
   - **p2h** (93df640, Run P): 16th a11y check — "ARIA required attributes" (WCAG 4.1.2, `fail`).
     Checks 12 roles against their WAI-ARIA 1.2 required state/property attributes. app.js v=15.
-  - **overseer/2026-06-09** (7c39412 + 3f92ef0 + 5a65686, Runs A-pre + A + B): three commits on one branch:
+  - **overseer/2026-06-09** (7c39412 + 3f92ef0 + 5a65686 + f90a158, Runs A + B + C): four commits on one branch:
     - **P2.1i** (7c39412): 17th a11y check — "Autocomplete on personal-data fields" (WCAG 1.3.5, `warn`). app.js v=16.
     - **P2.1j** (3f92ef0): 18th a11y check — "Frames have accessible names" (WCAG 4.1.2, `fail`). Checks `<iframe>` elements for `title` attribute; demo gets an untitled Google Maps iframe → shows fail. app.js v=17.
     - **P2.1k** (5a65686): 19th a11y check — "Viewport zoom restrictions" (WCAG 1.4.4, `warn`). Parses `<meta name="viewport">` for `user-scalable=no` or `maximum-scale≤1`; demo updated with `user-scalable=no` viewport → shows warn. app.js v=18.
+    - **P2.1l** (f90a158): 20th a11y check — "Color contrast (inline styles)" (WCAG 1.4.3, `warn`). Heuristic: parses inline `color`/`background-color` style attributes, computes WCAG relative-luminance ratio, flags elements below 4.5:1 (normal text) or 3:1 (large text). Supports hex, rgb/rgba, 30+ named colors. Demo updated with `<p style="color:#aaa;background-color:#fff">` → shows warn (2.3:1). methodology.html updated: nineteen→twenty checks, new table row, updated limitation note. app.js v=19.
   Old branches superseded — all safe to close:
   - `overseer/2026-06-08-p1.3` (62ab2ad): severity hierarchy done by owner's sweep.
   - `overseer/2026-06-08-p1.5` (e4bacc2): owner did P1.5 without --muted-2 fix (now in p2a).
@@ -227,13 +228,11 @@ normalized business name). `marina` seed client is the owner's own Lake Sonoma M
   AND the tool must keep passing its own accessibility engine.
 - **Deploy:** GitHub Pages from `main` (FREE — no Vercel quota). Push work to `overseer/<date>`
   branches; merging to main is low-risk, owner's call.
-- **Next buildable:** P2.1l — Color contrast (WCAG 1.4.3 Level AA, `warn`). Currently listed as
-  a limitation ("color contrast is not checked"). A heuristic approach: extract inline `color` and
-  `background-color` style attributes and check contrast ratio via WCAG formula. Cannot handle
-  CSS classes/external stylesheets from source alone — would be heuristic only on inline styles.
-  Alternatively: P2.1m — Touch target size (WCAG 2.5.5 Level AAA, `warn`) — check for interactive
-  elements that appear small based on inline `width`/`height` style attributes. Branch from
-  overseer/2026-06-09 or new date branch.
+- **Next buildable:** P2.1m — Touch target size (WCAG 2.5.5 Level AAA, `warn`). Check for
+  interactive elements (links, buttons, inputs) that appear small based on inline `width`/`height`
+  style attributes. Threshold: less than 44×44px inline-declared size is flagged as a potential
+  touch-target issue (heuristic — CSS-sized elements not detectable from source). Status `warn`
+  (Level AAA; inline styles only). Branch from overseer/2026-06-09 or new date branch.
 
 ### 🟡 Supporting
 - **sonoma-lead-scraper** (Python) — scrapes Sonoma County business leads → CSV → feeds duke CRM.
@@ -300,11 +299,12 @@ Keep this current — it's the owner's return-from-away checklist.
     switch) against their mandatory state/property attributes. Merge after p2g. app.js v=15.
     Owner QA: paste a URL with `<div role="slider">` (no aria-valuenow) → expect fail; a page
     using only semantic HTML → expect info. Demo `?demo=1` returns info (no such roles in sample).
-  - **shipsafe `overseer/2026-06-09`** (3 commits — merge after p2h): P2.1i + P2.1j + P2.1k.
+  - **shipsafe `overseer/2026-06-09`** (4 commits — merge after p2h): P2.1i + P2.1j + P2.1k + P2.1l.
     - **P2.1i** (7c39412): Autocomplete on personal-data fields (17th check, WCAG 1.3.5 AA, `warn`). Demo has email input w/ no autocomplete → shows warn.
     - **P2.1j** (3f92ef0): Frames have accessible names (18th check, WCAG 4.1.2 Level A, `fail`). Checks `<iframe>` for `title`; demo includes untitled Google Maps iframe → shows fail. ShipSafe own pages have no `<iframe>` elements → info (no self-fail). app.js v=17.
-    - **P2.1k** (5a65686): Viewport zoom restrictions (19th check, WCAG 1.4.4 Level AA, `warn`). Parses viewport meta for `user-scalable=no` or `maximum-scale≤1`. Demo updated with `user-scalable=no` → shows warn for this check + Mobile viewport now passes (viewport meta present). ShipSafe own pages use safe defaults → pass. app.js v=18.
-    Owner QA: paste a URL containing `<iframe src="https://maps.google.com/...">` (no title) → expect fail on P2.1j. A site with `<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">` → expect warn on P2.1k. A site with `content="width=device-width, initial-scale=1"` → expect pass on P2.1k.
+    - **P2.1k** (5a65686): Viewport zoom restrictions (19th check, WCAG 1.4.4 Level AA, `warn`). Parses viewport meta for `user-scalable=no` or `maximum-scale≤1`. Demo updated with `user-scalable=no` → shows warn. app.js v=18.
+    - **P2.1l** (f90a158): Color contrast on inline styles (20th check, WCAG 1.4.3 Level AA, `warn`). Computes WCAG relative-luminance ratio for inline color vs background-color (assumes white if no bg declared). Demo has `<p style="color:#aaa;background-color:#fff">` → shows warn (2.3:1, needs 4.5:1). methodology.html: nineteen→twenty, new table row, updated limitation note. app.js v=19.
+    Owner QA: (P2.1j) paste a URL with an untitled `<iframe>` → expect fail. (P2.1k) A site with `user-scalable=no` viewport → expect warn. (P2.1l) A page with inline `style="color:#aaa;background-color:#fff"` on a text element → expect warn (2.3:1). A page with `style="color:#333;background-color:#fff"` → expect pass (12.6:1). `?demo=1` now shows all four checks as expected.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.3`** (62ab2ad): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08-p1.5`** (e4bacc2): superseded.
   - **CLOSE shipsafe `overseer/2026-06-08`** (b8b2535): rejected design, 6 behind main.
